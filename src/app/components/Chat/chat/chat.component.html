@@ -1,0 +1,20 @@
+<ul>
+  <div *ngFor="let user of users | async">
+    <li *ngIf="user.email !== currentUser.email" (click)="openChatRoom(user)">
+      {{ user.email }}
+    </li>
+  </div>
+</ul>
+
+<div *ngIf="chatroomId">
+  <form>
+    <input [(ngModel)]="currentMessage" name="message" />
+    <button (click)="sendMessage()">Send</button>
+  </form>
+
+  <ul>
+    <li *ngFor="let message of messages | async">
+      {{ message.content }} - {{ message.sender }}
+    </li>
+  </ul>
+</div>

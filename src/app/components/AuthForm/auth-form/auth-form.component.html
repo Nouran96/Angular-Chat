@@ -1,0 +1,19 @@
+<form>
+  <label for="email">
+    Email address <input type="email" [(ngModel)]="form.email" name="email" />
+  </label>
+
+  <label for="email">
+    Username <input type="text" [(ngModel)]="form.username" name="username" />
+  </label>
+
+  <label for="password">
+    Password
+    <input type="password" [(ngModel)]="form.password" name="password" />
+  </label>
+
+  <button type="submit" (click)="login()">Login</button>
+  <button type="submit" (click)="register()">Register</button>
+</form>
+
+<button type="button" (click)="logout()">Logout</button>
