@@ -1,6 +1,7 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Firestore } from 'firebase/firestore';
 import { Observable, OperatorFunction } from 'rxjs';
 import { first, map, filter } from 'rxjs/operators';
 import { v4 as uuidv4 } from 'uuid';
@@ -12,6 +13,7 @@ import { v4 as uuidv4 } from 'uuid';
 })
 export class ChatComponent {
   @Input() currentUser: firebase.default.User;
+  otherUser: firebase.default.User;
   users: any;
   currentMessage: string;
   chatroomId: string;
@@ -30,10 +32,12 @@ export class ChatComponent {
 
   openChatRoom(user: firebase.default.User) {
     if (this.currentUser.displayName && user.displayName) {
+      this.otherUser = user;
+
       const chatroomQuery = this.firestore.collection('chatrooms', (ref) =>
         ref
           .where(`members.${this.currentUser.displayName}`, '==', true)
-          .where(`members.${user.displayName}`, '==', true)
+          .where(`members.${this.otherUser.displayName}`, '==', true)
       );
 
       chatroomQuery.get().subscribe((snapshot) => {
@@ -48,27 +52,38 @@ export class ChatComponent {
             .set({
               members: {
                 [`${this.currentUser.displayName}`]: true,
-                [`${user.displayName}`]: true,
+                [`${this.otherUser.displayName}`]: true,
               },
             });
         }
 
         this.messages = this.firestore
-          .collection('messages', (ref) =>
-            ref.where('chatroomId', '==', this.chatroomId)
-          )
+          .collection('chatrooms')
+          .doc(this.chatroomId)
+          .collection('messages')
           .valueChanges();
       });
     }
   }
 
   sendMessage() {
-    this.firestore.collection('messages').doc(this.firestore.createId()).set({
-      chatroomId: this.chatroomId,
-      sender: this.currentUser.displayName,
-      content: this.currentMessage,
-      timestamp: Date.now(),
-    });
+    // this.firestore.collection('messages').doc(this.firestore.createId()).set({
+    //   chatroomId: this.chatroomId,
+    //   sender: this.currentUser.displayName,
+    //   content: this.currentMessage,
+    //   timestamp: Date.now(),
+    // });
+
+    this.firestore
+      .collection('chatrooms')
+      .doc(this.chatroomId)
+      .collection('messages')
+      .doc(this.firestore.createId())
+      .set({
+        sender: this.currentUser.displayName,
+        content: this.currentMessage,
+        timestamp: Date.now(),
+      });
 
     this.currentMessage = '';
   }
