@@ -12,6 +12,9 @@ export class AppComponent {
   currentUser: firebase.default.User | null;
 
   constructor(private auth: AngularFireAuth) {
-    auth.onAuthStateChanged((user) => (this.currentUser = user));
+    auth.onAuthStateChanged((user) => {
+      console.log(user);
+      this.currentUser = user;
+    });
   }
 }

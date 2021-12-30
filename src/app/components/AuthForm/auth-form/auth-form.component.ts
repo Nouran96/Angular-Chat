@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth-form',
@@ -12,7 +13,8 @@ export class AuthFormComponent {
 
   constructor(
     public auth: AngularFireAuth,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private router: Router
   ) {
     this.form = {
       email: '',
@@ -39,6 +41,8 @@ export class AuthFormComponent {
               .collection('users')
               .doc(user?.uid)
               .set({ email: this.form.email, displayName: this.form.username });
+
+            this.router.navigate(['/']);
           })
           .catch((err) => {});
       } else {
@@ -52,13 +56,8 @@ export class AuthFormComponent {
       .signInWithEmailAndPassword(this.form.email, this.form.password)
       .then((credentials) => {
         console.log(credentials);
+        this.router.navigate(['/']);
       })
       .catch((err) => {});
-  }
-
-  logout() {
-    this.auth.signOut().then(() => {
-      console.log('signedout');
-    });
   }
 }
