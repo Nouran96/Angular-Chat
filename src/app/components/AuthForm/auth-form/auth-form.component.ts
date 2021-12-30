@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthForm } from 'src/app/models/AuthForm';
 
 @Component({
   selector: 'app-auth-form',
@@ -9,13 +10,23 @@ import { Router } from '@angular/router';
   styleUrls: ['./auth-form.component.scss'],
 })
 export class AuthFormComponent {
-  form: { email: string; password: string; username: string };
+  isLogin: boolean;
+  form: AuthForm;
 
   constructor(
     public auth: AngularFireAuth,
     private firestore: AngularFirestore,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
+    route.url.subscribe((url) => {
+      if (url.length && url[0].path === 'login') {
+        this.isLogin = true;
+      } else {
+        this.isLogin = false;
+      }
+    });
+
     this.form = {
       email: '',
       password: '',

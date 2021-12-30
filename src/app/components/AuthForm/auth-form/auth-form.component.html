@@ -3,7 +3,7 @@
     Email address <input type="email" [(ngModel)]="form.email" name="email" />
   </label>
 
-  <label for="email">
+  <label for="email" *ngIf="!isLogin">
     Username <input type="text" [(ngModel)]="form.username" name="username" />
   </label>
 
@@ -12,6 +12,13 @@
     <input type="password" [(ngModel)]="form.password" name="password" />
   </label>
 
-  <button type="submit" (click)="login()">Login</button>
-  <button type="submit" (click)="register()">Register</button>
+  <ng-container *ngIf="isLogin; else registerBlock">
+    <span>No account? <a routerLink="/register">Register now</a></span>
+    <button type="submit" (click)="login()" *ngIf="isLogin">Login</button>
+  </ng-container>
 </form>
+
+<ng-template #registerBlock>
+  <span>Have an account? <a routerLink="/login">Login now</a></span>
+  <button type="submit" (click)="register()">Register</button>
+</ng-template>

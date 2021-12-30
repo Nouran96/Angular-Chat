@@ -13,9 +13,10 @@ import { environment } from 'src/environments/environment';
 import { AuthFormComponent } from './components/AuthForm/auth-form/auth-form.component';
 import { LoginComponent } from './views/login/login.component';
 import { HomeComponent } from './views/home/home.component';
+import { RegisterComponent } from './views/register/register.component';
 
 @NgModule({
-  declarations: [AppComponent, ChatComponent, AuthFormComponent, LoginComponent, HomeComponent],
+  declarations: [AppComponent, ChatComponent, AuthFormComponent, LoginComponent, HomeComponent, RegisterComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
