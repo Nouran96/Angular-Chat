@@ -6,8 +6,13 @@ mat-icon {
   cursor: pointer;
 }
 
+.mat-hint {
+  color: red;
+}
+
 .input-container {
   display: flex;
+  margin-bottom: 0.4rem;
   flex-direction: column;
 
   .mat-form-field-appearance-outline {

@@ -10,48 +10,58 @@
 
   <h2 class="form-title">{{ isLogin ? "Welcome back" : "Create account" }}</h2>
 
-  <form>
+  <form [formGroup]="authForm">
     <app-input-field
       *ngIf="!isLogin"
       name="username"
-      [(bindModelData)]="form.username"
+      [formGroup]="authForm"
       label="Username"
+      [errors]="authForm.controls.username?.errors"
     ></app-input-field>
 
     <app-input-field
       type="email"
       name="email"
-      [(bindModelData)]="form.email"
+      [formGroup]="authForm"
       label="Email address"
+      [errors]="authForm.controls.email?.errors"
     ></app-input-field>
 
     <div class="inline-fields">
-      <div>
+      <div class="first-child">
         <app-input-field
-          class="first-child"
           type="password"
           name="password"
-          [(bindModelData)]="form.password"
+          [formGroup]="authForm"
           label="Password"
+          [errors]="authForm.controls.password?.errors"
         ></app-input-field>
       </div>
 
-      <div>
+      <div *ngIf="!isLogin">
         <app-input-field
-          *ngIf="!isLogin"
           type="password"
           name="confirmPassword"
-          [(bindModelData)]="form.confirmPassword"
+          [formGroup]="authForm"
           label="Confirm"
+          [errors]="authForm.controls.confirmPassword?.errors"
         ></app-input-field>
       </div>
     </div>
 
     <div class="flex-container">
-      <app-button type="submit" *ngIf="isLogin" (buttonClicked)="login()"
+      <app-button
+        [disabled]="authForm.invalid"
+        type="submit"
+        *ngIf="isLogin"
+        (buttonClicked)="login()"
         >Login</app-button
       >
-      <app-button type="submit" *ngIf="!isLogin" (buttonClicked)="register()"
+      <app-button
+        [disabled]="authForm.invalid"
+        type="submit"
+        *ngIf="!isLogin"
+        (buttonClicked)="register()"
         >Register</app-button
       >
     </div>

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthForm } from 'src/app/models/AuthForm';
 
 @Component({
   selector: 'app-auth-form',
@@ -11,13 +11,14 @@ import { AuthForm } from 'src/app/models/AuthForm';
 })
 export class AuthFormComponent {
   isLogin: boolean;
-  form: AuthForm;
+  authForm: FormGroup;
 
   constructor(
     public auth: AngularFireAuth,
     private firestore: AngularFirestore,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private fb: FormBuilder
   ) {
     route.url.subscribe((url) => {
       if (url.length && url[0].path === 'login') {
@@ -27,32 +28,34 @@ export class AuthFormComponent {
       }
     });
 
-    this.form = {
-      email: '',
-      password: '',
-      username: '',
-      confirmPassword: '',
-    };
+    this.authForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      username: ['', !this.isLogin && Validators.required],
+      confirmPassword: ['', !this.isLogin && Validators.required],
+    });
   }
 
   register() {
+    const { email, password, username } = this.authForm.controls;
+
     const duplicateUsernameQuery = this.firestore.collection('users', (ref) =>
-      ref.where('displayName', '==', this.form.username)
+      ref.where('displayName', '==', this.authForm.controls.username)
     );
 
     duplicateUsernameQuery.get().subscribe((snapshot) => {
       if (snapshot.empty) {
         this.auth
-          .createUserWithEmailAndPassword(this.form.email, this.form.password)
+          .createUserWithEmailAndPassword(email.value, password.value)
           .then((credentials) => {
             const user = credentials.user;
 
-            user?.updateProfile({ displayName: this.form.username });
+            user?.updateProfile({ displayName: username.value });
 
-            this.firestore
-              .collection('users')
-              .doc(user?.uid)
-              .set({ email: this.form.email, displayName: this.form.username });
+            this.firestore.collection('users').doc(user?.uid).set({
+              email: email.value,
+              displayName: username.value,
+            });
 
             this.router.navigate(['/']);
           })
@@ -64,8 +67,10 @@ export class AuthFormComponent {
   }
 
   login() {
+    const { email, password } = this.authForm.controls;
+
     this.auth
-      .signInWithEmailAndPassword(this.form.email, this.form.password)
+      .signInWithEmailAndPassword(email.value, password.value)
       .then((credentials) => {
         console.log(credentials);
         this.router.navigate(['/']);

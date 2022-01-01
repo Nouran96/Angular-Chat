@@ -7,6 +7,9 @@ import {
   SimpleChanges,
   ViewEncapsulation,
 } from '@angular/core';
+import { FormGroup, ValidationErrors } from '@angular/forms';
+import { ValidationMsgs } from 'src/app/models/ValidationMsgs';
+import { ValidationMessages } from 'src/app/utils/Validations';
 
 @Component({
   selector: 'app-input-field',
@@ -15,20 +18,15 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 export class InputFieldComponent implements OnInit {
-  @Input() bindModelData: any;
+  // @Input() bindModelData: any;
+  @Input() formGroup: FormGroup;
   @Input() label: string;
   @Input() name: string;
   @Input() type: string = 'text';
+  @Input() errors: ValidationErrors | null | undefined;
   icon: string;
   fieldType: string;
-
-  // note that this must be named as the input name + "Change"
-  @Output() bindModelDataChange: any = new EventEmitter();
-
-  updateData(event: Event) {
-    this.bindModelData = event;
-    this.bindModelDataChange.emit(event);
-  }
+  errorMsg: string;
 
   constructor() {}
 
@@ -43,6 +41,18 @@ export class InputFieldComponent implements OnInit {
       } else {
         this.icon = '';
       }
+    }
+
+    if (changes.errors?.currentValue) {
+      const firstError: keyof ValidationMsgs = Object.keys(
+        changes.errors.currentValue
+      )[0] as keyof ValidationMsgs;
+
+      if (firstError) {
+        this.errorMsg = ValidationMessages[firstError];
+      }
+    } else {
+      this.errorMsg = '';
     }
   }
 
