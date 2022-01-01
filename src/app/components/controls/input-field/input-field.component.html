@@ -5,10 +5,17 @@
     <mat-label></mat-label>
     <input
       matInput
-      [type]="type"
+      [type]="fieldType"
       [ngModel]="bindModelData"
       (ngModelChange)="updateData($event)"
       [name]="name"
     />
+    <mat-icon
+      (click)="toggleVisibility()"
+      matSuffix
+      class="material-icons-outlined"
+      *ngIf="icon"
+      >{{ icon }}</mat-icon
+    >
   </mat-form-field>
 </div>

@@ -2,6 +2,10 @@ mat-label {
   font-weight: 600;
 }
 
+mat-icon {
+  cursor: pointer;
+}
+
 .input-container {
   display: flex;
   flex-direction: column;

@@ -26,21 +26,25 @@
     ></app-input-field>
 
     <div class="inline-fields">
-      <app-input-field
-        class="first-child"
-        type="password"
-        name="password"
-        [(bindModelData)]="form.password"
-        label="Password"
-      ></app-input-field>
+      <div>
+        <app-input-field
+          class="first-child"
+          type="password"
+          name="password"
+          [(bindModelData)]="form.password"
+          label="Password"
+        ></app-input-field>
+      </div>
 
-      <app-input-field
-        *ngIf="!isLogin"
-        type="password"
-        name="confirmPassword"
-        [(bindModelData)]="form.confirmPassword"
-        label="Confirm"
-      ></app-input-field>
+      <div>
+        <app-input-field
+          *ngIf="!isLogin"
+          type="password"
+          name="confirmPassword"
+          [(bindModelData)]="form.confirmPassword"
+          label="Confirm"
+        ></app-input-field>
+      </div>
     </div>
 
     <div class="flex-container">

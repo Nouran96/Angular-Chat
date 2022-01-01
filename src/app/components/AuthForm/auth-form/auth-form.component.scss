@@ -30,6 +30,10 @@
     .first-child {
       flex: 1;
     }
+
+    > div {
+      width: 48%;
+    }
   }
 
   app-button {
