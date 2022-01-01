@@ -1,24 +1,55 @@
-<form>
-  <label for="email">
-    Email address <input type="email" [(ngModel)]="form.email" name="email" />
-  </label>
+<div class="form-container">
+  <p class="auth-link">
+    <span *ngIf="isLogin"
+      >No account yet? <a routerLink="/register">Register</a></span
+    >
+    <span *ngIf="!isLogin"
+      >Already have an account? <a routerLink="/login">Login</a></span
+    >
+  </p>
 
-  <label for="email" *ngIf="!isLogin">
-    Username <input type="text" [(ngModel)]="form.username" name="username" />
-  </label>
+  <h2 class="form-title">{{ isLogin ? "Welcome back" : "Create account" }}</h2>
 
-  <label for="password">
-    Password
-    <input type="password" [(ngModel)]="form.password" name="password" />
-  </label>
+  <form>
+    <app-input-field
+      *ngIf="!isLogin"
+      name="username"
+      [(bindModelData)]="form.username"
+      label="Username"
+    ></app-input-field>
 
-  <ng-container *ngIf="isLogin; else registerBlock">
-    <span>No account? <a routerLink="/register">Register now</a></span>
-    <button type="submit" (click)="login()" *ngIf="isLogin">Login</button>
-  </ng-container>
-</form>
+    <app-input-field
+      type="email"
+      name="email"
+      [(bindModelData)]="form.email"
+      label="Email address"
+    ></app-input-field>
 
-<ng-template #registerBlock>
-  <span>Have an account? <a routerLink="/login">Login now</a></span>
-  <button type="submit" (click)="register()">Register</button>
-</ng-template>
+    <div class="inline-fields">
+      <app-input-field
+        class="first-child"
+        type="password"
+        name="password"
+        [(bindModelData)]="form.password"
+        label="Password"
+      ></app-input-field>
+
+      <app-input-field
+        *ngIf="!isLogin"
+        type="password"
+        name="confirmPassword"
+        [(bindModelData)]="form.confirmPassword"
+        label="Confirm"
+      ></app-input-field>
+    </div>
+
+    <div class="flex-container">
+      <app-button type="submit" *ngIf="isLogin" (buttonClicked)="login()"
+        >Login</app-button
+      >
+      <app-button type="submit" *ngIf="!isLogin" (buttonClicked)="register()"
+        >Register</app-button
+      >
+    </div>
+  </form>
+</div>

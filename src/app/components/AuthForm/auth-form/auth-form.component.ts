@@ -31,6 +31,7 @@ export class AuthFormComponent {
       email: '',
       password: '',
       username: '',
+      confirmPassword: '',
     };
   }
 

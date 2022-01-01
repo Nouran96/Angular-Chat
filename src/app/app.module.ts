@@ -14,9 +14,22 @@ import { AuthFormComponent } from './components/AuthForm/auth-form/auth-form.com
 import { LoginComponent } from './views/login/login.component';
 import { HomeComponent } from './views/home/home.component';
 import { RegisterComponent } from './views/register/register.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialUiModule } from './modules/material-ui/material-ui.module';
+import { InputFieldComponent } from './components/controls/input-field/input-field.component';
+import { ButtonComponent } from './components/controls/button/button.component';
 
 @NgModule({
-  declarations: [AppComponent, ChatComponent, AuthFormComponent, LoginComponent, HomeComponent, RegisterComponent],
+  declarations: [
+    AppComponent,
+    ChatComponent,
+    AuthFormComponent,
+    LoginComponent,
+    HomeComponent,
+    RegisterComponent,
+    InputFieldComponent,
+    ButtonComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,6 +38,8 @@ import { RegisterComponent } from './views/register/register.component';
     AngularFireDatabaseModule,
     AngularFirestoreModule,
     AngularFireAuthModule,
+    BrowserAnimationsModule,
+    MaterialUiModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

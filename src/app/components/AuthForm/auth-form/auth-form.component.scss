@@ -1,0 +1,38 @@
+@import "../../../../styles.scss";
+
+.form-container {
+  padding: 1.5rem;
+
+  .auth-link {
+    display: flex;
+    justify-content: flex-end;
+    color: $helper_text_color;
+    font-size: 0.8rem;
+    font-weight: 500;
+
+    a {
+      color: $links_color;
+      text-decoration: none;
+      margin-left: 0.3rem;
+      font-weight: 700;
+    }
+  }
+
+  .form-title {
+    font-size: 1.7em;
+    margin: 4rem 0 2rem;
+  }
+
+  .inline-fields {
+    display: flex;
+    gap: 1rem;
+
+    .first-child {
+      flex: 1;
+    }
+  }
+
+  app-button {
+    width: inherit;
+  }
+}

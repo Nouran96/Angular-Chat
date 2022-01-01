@@ -1,0 +1,20 @@
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  gap: 1rem;
+
+  .auth-bg-container {
+    width: 50%;
+    // box-shadow: 1px 1px 5px 0px #ddd;
+
+    img {
+      max-width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .auth-form-container {
+    width: 50%;
+  }
+}

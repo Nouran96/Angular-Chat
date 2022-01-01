@@ -1,0 +1,19 @@
+mat-label {
+  font-weight: 600;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+
+  .mat-form-field-appearance-outline {
+    .mat-form-field-infix {
+      padding: 1.1em 0 0.9em;
+      border-top: none;
+    }
+
+    .mat-form-field-outline {
+      background-color: #f1f1f1;
+    }
+  }
+}
