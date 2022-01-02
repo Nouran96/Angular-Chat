@@ -59,15 +59,19 @@
         type="submit"
         *ngIf="isLogin"
         (buttonClicked)="login()"
-        >Login</app-button
       >
+        <app-spinner *ngIf="isLoading"></app-spinner>
+        <span *ngIf="!isLoading">Login</span>
+      </app-button>
       <app-button
         [disabled]="authForm.invalid"
         type="submit"
         *ngIf="!isLogin"
         (buttonClicked)="register()"
-        >Register</app-button
       >
+        <app-spinner *ngIf="isLoading"></app-spinner>
+        <span *ngIf="!isLoading">Register</span>
+      </app-button>
     </div>
   </form>
 </div>

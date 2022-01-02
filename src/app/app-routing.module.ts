@@ -7,9 +7,15 @@ import { NotAuthGuard } from './guards/notAuth/not-auth.guard';
 import { HomeComponent } from './views/home/home.component';
 import { AuthGuard } from './guards/auth/auth.guard';
 import { RegisterComponent } from './views/register/register.component';
+import { ChatComponent } from './components/Chat/chat/chat.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+  {
+    path: '',
+    component: HomeComponent,
+    canActivate: [AuthGuard],
+    children: [{ path: 'chat', component: ChatComponent }],
+  },
   {
     path: 'login',
     component: LoginComponent,

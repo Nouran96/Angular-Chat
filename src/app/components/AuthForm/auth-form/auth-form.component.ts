@@ -9,6 +9,8 @@ import {
   passwordsMismatch,
 } from 'src/app/utils/Validations';
 import { AuthFormCustomErrors } from 'src/app/models/AuthForm';
+import { Store } from '@ngrx/store';
+import { toggleSnackbar } from 'src/app/store/actions/shared.actions';
 
 @Component({
   selector: 'app-auth-form',
@@ -19,13 +21,15 @@ export class AuthFormComponent {
   isLogin: boolean;
   authForm: FormGroup;
   customErrors: AuthFormCustomErrors;
+  isLoading: boolean = false;
 
   constructor(
     public auth: AngularFireAuth,
     private firestore: AngularFirestore,
     private router: Router,
     private route: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private store: Store
   ) {
     route.url.subscribe((url) => {
       if (url.length && url[0].path === 'login') {
@@ -56,6 +60,7 @@ export class AuthFormComponent {
 
   register() {
     const { email, password, username } = this.authForm.controls;
+    this.isLoading = true;
 
     const duplicateUsernameQuery = this.firestore.collection('users', (ref) =>
       ref.where('displayName', '==', username.value)
@@ -78,9 +83,11 @@ export class AuthFormComponent {
             this.router.navigate(['/']);
           })
           .catch((err) => {
+            this.isLoading = false;
             this.checkCustomErrorType(err.code);
           });
       } else {
+        this.isLoading = false;
         this.customErrors = {
           username: { usernameFound: 'Username already found' },
         };
@@ -90,6 +97,7 @@ export class AuthFormComponent {
 
   login() {
     const { email, password } = this.authForm.controls;
+    this.isLoading = true;
 
     this.auth
       .signInWithEmailAndPassword(email.value, password.value)
@@ -97,6 +105,7 @@ export class AuthFormComponent {
         this.router.navigate(['/']);
       })
       .catch((err) => {
+        this.isLoading = false;
         this.checkCustomErrorType(err.code);
       });
   }
@@ -114,6 +123,14 @@ export class AuthFormComponent {
           password: { wrongPassword: 'Invalid Credentials' },
           email: { wrongPassword: 'Invalid Credentials' },
         };
+        break;
+      case 'auth/network-request-failed':
+        this.store.dispatch(
+          toggleSnackbar({
+            open: true,
+            message: 'Check your internet connection',
+          })
+        );
         break;
       default:
         return;

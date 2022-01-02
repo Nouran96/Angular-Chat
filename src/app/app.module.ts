@@ -5,8 +5,11 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppRoutingModule } from './app-routing.module';
+import { reducers } from './store/reducers';
 import { AppComponent } from './app.component';
 import { ChatComponent } from './components/Chat/chat/chat.component';
 import { environment } from 'src/environments/environment';
@@ -18,6 +21,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialUiModule } from './modules/material-ui/material-ui.module';
 import { InputFieldComponent } from './components/controls/input-field/input-field.component';
 import { ButtonComponent } from './components/controls/button/button.component';
+import { SnackbarComponent } from './components/controls/snackbar/snackbar.component';
+import { SpinnerComponent } from './components/controls/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +34,8 @@ import { ButtonComponent } from './components/controls/button/button.component';
     RegisterComponent,
     InputFieldComponent,
     ButtonComponent,
+    SnackbarComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +48,11 @@ import { ButtonComponent } from './components/controls/button/button.component';
     AngularFireAuthModule,
     BrowserAnimationsModule,
     MaterialUiModule,
+    StoreModule.forRoot(reducers),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],
