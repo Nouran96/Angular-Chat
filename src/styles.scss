@@ -27,3 +27,14 @@ h6 {
   display: flex;
   width: 100%;
 }
+
+.user-avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+
+  img {
+    border-radius: inherit;
+    max-width: 100%;
+  }
+}

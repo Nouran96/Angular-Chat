@@ -23,6 +23,8 @@ import { InputFieldComponent } from './components/controls/input-field/input-fie
 import { ButtonComponent } from './components/controls/button/button.component';
 import { SnackbarComponent } from './components/controls/snackbar/snackbar.component';
 import { SpinnerComponent } from './components/controls/spinner/spinner.component';
+import { ChatUserComponent } from './components/ChatUser/chat-user/chat-user.component';
+import { ChatMessageComponent } from './components/ChatMessage/chat-message/chat-message.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { SpinnerComponent } from './components/controls/spinner/spinner.componen
     ButtonComponent,
     SnackbarComponent,
     SpinnerComponent,
+    ChatUserComponent,
+    ChatMessageComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,20 +1,57 @@
-<ul>
-  <div *ngFor="let user of users | async">
-    <li *ngIf="user.email !== currentUser.email" (click)="openChatRoom(user)">
-      {{ user.email }}
-    </li>
+<div class="chat-container">
+  <div class="users-container">
+    <div *ngFor="let user of users | async">
+      <app-chat-user
+        *ngIf="user.email !== currentUser.email"
+        (click)="openChatRoom(user)"
+        [user]="user"
+      ></app-chat-user>
+    </div>
   </div>
-</ul>
 
-<div *ngIf="chatroomId">
-  <form>
-    <input [(ngModel)]="currentMessage" name="message" />
-    <button (click)="sendMessage()">Send</button>
-  </form>
+  <div *ngIf="chatroomId; else startChat" class="chat-room-container">
+    <div class="selected-user-container">
+      <div class="user-avatar">
+        <img src="../../../../assets/avatar.png" alt="Avatar" />
+      </div>
 
-  <ul>
-    <li *ngFor="let message of messages | async">
-      {{ message.content }} - {{ message.sender }}
-    </li>
-  </ul>
+      <span>{{ otherUser?.displayName }}</span>
+    </div>
+
+    <!-- <ul>
+      <li *ngFor="let message of messages | async">
+        <pre>{{ message.content }}</pre>
+        - {{ message.sender }}
+      </li>
+    </ul> -->
+
+    <div class="messages-container">
+      <div
+        *ngFor="let message of messages | async"
+        [class]="{ 'my-message': message.sender === currentUser.displayName }"
+      >
+        <app-chat-message
+          [message]="message"
+          [currentUser]="currentUser"
+        ></app-chat-message>
+      </div>
+    </div>
+
+    <form class="chat-input-container">
+      <textarea
+        matInput
+        rows="2"
+        placeholder="Write your message..."
+        [(ngModel)]="currentMessage"
+        name="message"
+      ></textarea>
+      <button (click)="sendMessage()">Send</button>
+    </form>
+  </div>
 </div>
+
+<ng-template #startChat>
+  <div class="no-chat">
+    <h3>Select a user to chat with</h3>
+  </div>
+</ng-template>

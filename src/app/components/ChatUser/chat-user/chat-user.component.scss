@@ -1,0 +1,26 @@
+.chat-user-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  box-shadow: 1px 1px 3px #ddd;
+
+  &:hover {
+    background: cadetblue;
+    color: white;
+  }
+
+  .user-data {
+    display: flex;
+    flex-direction: column;
+
+    span {
+      font-weight: 500;
+    }
+
+    small {
+      font-size: 0.8em;
+    }
+  }
+}
