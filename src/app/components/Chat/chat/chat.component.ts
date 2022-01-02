@@ -1,9 +1,11 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Store } from '@ngrx/store';
 import { Firestore } from 'firebase/firestore';
 import { Observable, OperatorFunction } from 'rxjs';
 import { first, map, filter } from 'rxjs/operators';
+import { selectCurrentUser } from 'src/app/store/selectors/auth.selector';
 import { v4 as uuidv4 } from 'uuid';
 
 @Component({
@@ -12,26 +14,25 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./chat.component.scss'],
 })
 export class ChatComponent {
-  @Input() currentUser: firebase.default.User;
+  currentUser: firebase.default.User;
   otherUser: firebase.default.User;
   users: any;
   currentMessage: string;
   chatroomId: string;
   messages: any = [];
 
-  constructor(private firestore: AngularFirestore) {
-    this.users = firestore.collection('users').valueChanges();
-  }
+  constructor(private firestore: AngularFirestore, private store: Store) {
+    store.select(selectCurrentUser).subscribe((data) => {
+      if (data.currentUser) {
+        this.currentUser = data.currentUser;
+      }
 
-  ngOnChanges(changes: SimpleChanges) {
-    // Current user changed
-    if (changes.currentUser.previousValue?.email !== this.currentUser.email) {
-      this.chatroomId = '';
-    }
+      this.users = firestore.collection('users').valueChanges();
+    });
   }
 
   openChatRoom(user: firebase.default.User) {
-    if (this.currentUser.displayName && user.displayName) {
+    if (this.currentUser?.displayName && user?.displayName) {
       this.otherUser = user;
 
       const chatroomQuery = this.firestore.collection('chatrooms', (ref) =>

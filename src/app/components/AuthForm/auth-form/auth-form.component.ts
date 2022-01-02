@@ -7,10 +7,12 @@ import {
   emailValidator,
   minLengthValidator,
   passwordsMismatch,
+  usernameValidator,
 } from 'src/app/utils/Validations';
 import { AuthFormCustomErrors } from 'src/app/models/AuthForm';
 import { Store } from '@ngrx/store';
 import { toggleSnackbar } from 'src/app/store/actions/shared.actions';
+import { addCurrentUser } from 'src/app/store/actions/auth.actions';
 
 @Component({
   selector: 'app-auth-form',
@@ -49,7 +51,10 @@ export class AuthFormComponent {
             ...(!this.isLogin ? [minLengthValidator(6)] : []),
           ],
         ],
-        username: ['', !this.isLogin && Validators.required],
+        username: [
+          '',
+          [...(!this.isLogin ? [Validators.required, usernameValidator] : [])],
+        ],
         confirmPassword: ['', !this.isLogin && Validators.required],
       },
       {
@@ -60,54 +65,63 @@ export class AuthFormComponent {
 
   register() {
     const { email, password, username } = this.authForm.controls;
-    this.isLoading = true;
 
     const duplicateUsernameQuery = this.firestore.collection('users', (ref) =>
       ref.where('displayName', '==', username.value)
     );
 
-    duplicateUsernameQuery.get().subscribe((snapshot) => {
-      if (snapshot.empty) {
-        this.auth
-          .createUserWithEmailAndPassword(email.value, password.value)
-          .then((credentials) => {
-            const user = credentials.user;
+    if (!this.isLoading) {
+      this.isLoading = true;
 
-            user?.updateProfile({ displayName: username.value });
+      duplicateUsernameQuery.get().subscribe((snapshot) => {
+        if (snapshot.empty) {
+          this.auth
+            .createUserWithEmailAndPassword(email.value, password.value)
+            .then((credentials) => {
+              const user = credentials.user;
 
-            this.firestore.collection('users').doc(user?.uid).set({
-              email: email.value,
-              displayName: username.value,
+              user?.updateProfile({ displayName: username.value });
+
+              this.firestore.collection('users').doc(user?.uid).set({
+                email: email.value,
+                displayName: username.value,
+              });
+
+              this.store.dispatch(addCurrentUser({ user }));
+
+              this.router.navigate(['/']);
+            })
+            .catch((err) => {
+              this.isLoading = false;
+              this.checkCustomErrorType(err.code);
             });
-
-            this.router.navigate(['/']);
-          })
-          .catch((err) => {
-            this.isLoading = false;
-            this.checkCustomErrorType(err.code);
-          });
-      } else {
-        this.isLoading = false;
-        this.customErrors = {
-          username: { usernameFound: 'Username already found' },
-        };
-      }
-    });
+        } else {
+          this.isLoading = false;
+          this.customErrors = {
+            username: { usernameFound: 'Username already found' },
+          };
+        }
+      });
+    }
   }
 
   login() {
     const { email, password } = this.authForm.controls;
-    this.isLoading = true;
 
-    this.auth
-      .signInWithEmailAndPassword(email.value, password.value)
-      .then((credentials) => {
-        this.router.navigate(['/']);
-      })
-      .catch((err) => {
-        this.isLoading = false;
-        this.checkCustomErrorType(err.code);
-      });
+    if (!this.isLoading) {
+      this.isLoading = true;
+
+      this.auth
+        .signInWithEmailAndPassword(email.value, password.value)
+        .then((credentials) => {
+          this.store.dispatch(addCurrentUser({ user: credentials?.user }));
+          this.router.navigate(['/']);
+        })
+        .catch((err) => {
+          this.isLoading = false;
+          this.checkCustomErrorType(err.code);
+        });
+    }
   }
 
   checkCustomErrorType(errCode: string) {

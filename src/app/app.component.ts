@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Store } from '@ngrx/store';
 import { Observable, from } from 'rxjs';
 import { User } from './models/User';
+import { addCurrentUser } from './store/actions/auth.actions';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +11,10 @@ import { User } from './models/User';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  currentUser: firebase.default.User | null;
-
-  constructor(private auth: AngularFireAuth) {
+  constructor(private auth: AngularFireAuth, private store: Store) {
     auth.onAuthStateChanged((user) => {
-      console.log(user);
-      this.currentUser = user;
+      const currentUser = JSON.parse(JSON.stringify(user));
+      this.store.dispatch(addCurrentUser({ user: currentUser }));
     });
   }
 }

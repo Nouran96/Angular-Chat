@@ -35,3 +35,13 @@ export const minLengthValidator = (length: number): ValidatorFn => {
       : { minlength: `Min length of ${length} characters` };
   };
 };
+
+export const usernameValidator = (
+  control: AbstractControl
+): ValidationErrors | null => {
+  const usernameRegex = /^[a-zA-Z0-9_]+$/;
+  const isValid = usernameRegex.test(control.value);
+  return isValid
+    ? null
+    : { invalidUsername: 'Field only accepts characters, digits and _' };
+};

@@ -15,7 +15,6 @@ export class SnackbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.select(selectSnackbar).subscribe((res) => {
-      console.log(res);
       if (res.openSnackbar) {
         this.openSnackBar(res);
       }
