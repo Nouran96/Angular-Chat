@@ -16,7 +16,7 @@
       name="username"
       [formGroup]="authForm"
       label="Username"
-      [errors]="authForm.controls.username?.errors"
+      [errors]="authForm.controls.username?.errors || customErrors?.username"
     ></app-input-field>
 
     <app-input-field
@@ -24,7 +24,7 @@
       name="email"
       [formGroup]="authForm"
       label="Email address"
-      [errors]="authForm.controls.email?.errors"
+      [errors]="authForm.controls.email?.errors || customErrors?.email"
     ></app-input-field>
 
     <div class="inline-fields">
@@ -34,7 +34,9 @@
           name="password"
           [formGroup]="authForm"
           label="Password"
-          [errors]="authForm.controls.password?.errors"
+          [errors]="
+            authForm.controls.password?.errors || customErrors?.password
+          "
         ></app-input-field>
       </div>
 
@@ -44,7 +46,9 @@
           name="confirmPassword"
           [formGroup]="authForm"
           label="Confirm"
-          [errors]="authForm.controls.confirmPassword?.errors"
+          [errors]="
+            authForm.controls.confirmPassword?.errors || authForm.errors
+          "
         ></app-input-field>
       </div>
     </div>

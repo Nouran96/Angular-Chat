@@ -1,7 +1,12 @@
 <div class="input-container" [formGroup]="formGroup">
   <mat-label *ngIf="label">{{ label }}</mat-label>
 
-  <mat-form-field appearance="outline">
+  <mat-form-field
+    appearance="outline"
+    [class]="
+      formGroup.get(name)?.touched && errorMsg ? 'mat-form-field-invalid' : ''
+    "
+  >
     <mat-label></mat-label>
     <input matInput [type]="fieldType" [formControlName]="name" />
     <mat-icon

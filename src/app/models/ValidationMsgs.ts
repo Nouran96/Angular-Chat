@@ -1,5 +1,6 @@
 export interface ValidationMsgs {
   required: string;
-  email: string;
-  passwordMismatch: string;
+  invalidEmail: string;
+  passwordsMismatch: string;
+  minlength: string;
 }

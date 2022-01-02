@@ -5,6 +5,9 @@
 
   .auth-bg-container {
     width: 50%;
+    background-image: url(../../../assets/auth_bg.jpg);
+    background-size: cover;
+    background-position: 80%;
     // box-shadow: 1px 1px 5px 0px #ddd;
 
     img {
@@ -16,5 +19,17 @@
 
   .auth-form-container {
     width: 50%;
+  }
+
+  @media screen and (max-width: 640px) {
+    justify-content: center;
+
+    .auth-bg-container {
+      display: none;
+    }
+
+    .auth-form-container {
+      width: 100%;
+    }
   }
 }

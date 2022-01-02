@@ -44,13 +44,14 @@ export class InputFieldComponent implements OnInit {
     }
 
     if (changes.errors?.currentValue) {
-      const firstError: keyof ValidationMsgs = Object.keys(
+      const firstError = Object.keys(
         changes.errors.currentValue
-      )[0] as keyof ValidationMsgs;
+      )[0] as keyof typeof ValidationMessages;
 
-      if (firstError) {
-        this.errorMsg = ValidationMessages[firstError];
-      }
+      this.errorMsg =
+        typeof changes.errors.currentValue[firstError] === 'string'
+          ? changes.errors.currentValue[firstError]
+          : ValidationMessages[firstError];
     } else {
       this.errorMsg = '';
     }
