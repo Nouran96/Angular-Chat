@@ -7,10 +7,18 @@
   background: rgb(56, 56, 56);
   color: white;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
 
   pre {
     margin: 0;
     white-space: pre-line;
+  }
+
+  small {
+    align-self: flex-end;
+    color: #ddd;
+    font-size: 0.8em;
   }
 }
 

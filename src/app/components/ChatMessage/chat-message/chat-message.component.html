@@ -1,3 +1,4 @@
 <div [class]="{ 'chat-message-container': true, 'my-message': isMyMessage() }">
   <pre>{{ message?.content }}</pre>
+  <small>{{ moment(message?.timestamp).format("h:mm A") }}</small>
 </div>
