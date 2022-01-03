@@ -13,6 +13,7 @@
     box-shadow: 1px 1px 3px #ddd;
     overflow-y: auto;
     width: 40%;
+    border-radius: 10px 0 0 10px;
   }
 
   .chat-room-container {
@@ -20,6 +21,7 @@
     width: 60%;
     display: flex;
     flex-direction: column;
+    border-radius: 0 10px 10px 0;
 
     .selected-user-container {
       display: flex;
@@ -27,6 +29,7 @@
       gap: 0.5rem;
       padding: 0.3rem 1rem;
       box-shadow: 1px 1px 3px #ddd;
+      border-top-right-radius: 10px;
     }
 
     .messages-container {
@@ -47,13 +50,24 @@
 
     .chat-input-container {
       display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.3rem 0.5rem;
       box-shadow: 2px -2px 3px #ddd, 0px 0px 3px #ddd;
+      border-bottom-right-radius: 10px;
+
+      .send-container {
+        color: cadetblue;
+        cursor: pointer;
+      }
 
       textarea {
+        outline: none;
         flex: 1;
-        padding: 0.3rem 0.7rem;
+        padding: 0rem 0.7rem;
         border: none;
         resize: none;
+        font-family: "Poppins";
       }
     }
   }

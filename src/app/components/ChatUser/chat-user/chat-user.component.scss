@@ -12,6 +12,10 @@
     color: white;
   }
 
+  .user-avatar {
+    flex-shrink: 0;
+  }
+
   .user-data {
     display: flex;
     flex-direction: column;

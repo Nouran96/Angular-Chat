@@ -39,7 +39,13 @@
         [(ngModel)]="currentMessage"
         name="message"
       ></textarea>
-      <button (click)="sendMessage()">Send</button>
+
+      <div class="send-container" title="Send">
+        <mat-icon (click)="sendMessage()" class="material-icons-outlined"
+          >send</mat-icon
+        >
+      </div>
+      <!-- <button (click)="sendMessage()">Send</button> -->
     </form>
   </div>
 </div>
