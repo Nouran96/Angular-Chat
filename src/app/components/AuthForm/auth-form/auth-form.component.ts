@@ -77,10 +77,10 @@ export class AuthFormComponent {
         if (snapshot.empty) {
           this.auth
             .createUserWithEmailAndPassword(email.value, password.value)
-            .then((credentials) => {
+            .then(async (credentials) => {
               const user = credentials.user;
 
-              user?.updateProfile({ displayName: username.value });
+              await user?.updateProfile({ displayName: username.value });
 
               this.firestore.collection('users').doc(user?.uid).set({
                 email: email.value,
@@ -114,7 +114,7 @@ export class AuthFormComponent {
       this.auth
         .signInWithEmailAndPassword(email.value, password.value)
         .then((credentials) => {
-          this.store.dispatch(addCurrentUser({ user: credentials?.user }));
+          // this.store.dispatch(addCurrentUser({ user: credentials?.user }));
           this.router.navigate(['/']);
         })
         .catch((err) => {

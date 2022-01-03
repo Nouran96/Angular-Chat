@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
 
   logout() {
     this.auth.signOut().then(() => {
-      this.store.dispatch(addCurrentUser({ user: null }));
+      // this.store.dispatch(addCurrentUser({ user: null }));
       this.router.navigate(['login']);
     });
   }
