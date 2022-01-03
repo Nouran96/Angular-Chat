@@ -1,4 +1,10 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Store } from '@ngrx/store';
@@ -21,6 +27,8 @@ export class ChatComponent {
   chatroomId: string;
   messages: any = [];
 
+  @ViewChild('messagesContainer') messagesContainer: ElementRef;
+
   constructor(private firestore: AngularFirestore, private store: Store) {
     store.select(selectCurrentUser).subscribe((data) => {
       if (data.currentUser) {
@@ -29,6 +37,10 @@ export class ChatComponent {
 
       this.users = firestore.collection('users').valueChanges();
     });
+  }
+
+  ngAfterViewChecked() {
+    this.scrollToLastMessage();
   }
 
   openChatRoom(user: firebase.default.User) {
@@ -58,23 +70,41 @@ export class ChatComponent {
             });
         }
 
-        this.messages = this.firestore
+        this.firestore
           .collection('chatrooms')
           .doc(this.chatroomId)
-          .collection('messages')
-          .valueChanges();
+          .collection('messages', (ref) => ref.orderBy('timestamp'))
+          .valueChanges()
+          .subscribe((msgs) => {
+            this.messages = msgs;
+            // this.scrollToLastMessage();
+          });
       });
     }
   }
 
-  sendMessage() {
-    // this.firestore.collection('messages').doc(this.firestore.createId()).set({
-    //   chatroomId: this.chatroomId,
-    //   sender: this.currentUser.displayName,
-    //   content: this.currentMessage,
-    //   timestamp: Date.now(),
-    // });
+  scrollToLastMessage() {
+    if (this.messagesContainer?.nativeElement) {
+      this.messagesContainer.nativeElement.scrollTop =
+        this.messagesContainer.nativeElement.scrollHeight;
+    }
+  }
 
+  checkKeyBeforeSend(event: KeyboardEvent) {
+    const enterKeyPressed =
+      event instanceof KeyboardEvent &&
+      event.key === 'Enter' &&
+      !event.shiftKey &&
+      !event.altKey &&
+      !event.ctrlKey;
+
+    if (enterKeyPressed) {
+      event.preventDefault();
+      this.sendMessage();
+    }
+  }
+
+  sendMessage() {
     this.firestore
       .collection('chatrooms')
       .doc(this.chatroomId)
@@ -87,5 +117,6 @@ export class ChatComponent {
       });
 
     this.currentMessage = '';
+    // this.scrollToLastMessage();
   }
 }

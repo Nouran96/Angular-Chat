@@ -4,7 +4,8 @@
   cursor: pointer;
   gap: 0.5rem;
   padding: 0.5rem;
-  box-shadow: 1px 1px 3px #ddd;
+  // box-shadow: 1px 1px 3px #ddd;
+  box-shadow: -1px 0px 3px #ddd;
 
   &:hover {
     background: cadetblue;
