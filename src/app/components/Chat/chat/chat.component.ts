@@ -1,9 +1,11 @@
+import { BreakpointObserver } from '@angular/cdk/layout';
 import {
   Component,
   ElementRef,
   Input,
   SimpleChanges,
   ViewChild,
+  ViewEncapsulation,
 } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -18,6 +20,7 @@ import { v4 as uuidv4 } from 'uuid';
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ChatComponent {
   currentUser: firebase.default.User;
@@ -26,16 +29,27 @@ export class ChatComponent {
   currentMessage: string;
   chatroomId: string;
   messages: any = [];
+  isSmallScreen: boolean;
 
   @ViewChild('messagesContainer') messagesContainer: ElementRef;
 
-  constructor(private firestore: AngularFirestore, private store: Store) {
+  constructor(
+    private firestore: AngularFirestore,
+    private store: Store,
+    private breakpointObserver: BreakpointObserver
+  ) {
     store.select(selectCurrentUser).subscribe((data) => {
       if (data.currentUser) {
         this.currentUser = data.currentUser;
       }
 
       this.users = firestore.collection('users').valueChanges();
+    });
+
+    const layoutChanges = breakpointObserver.observe(['(max-width: 680px)']);
+
+    layoutChanges.subscribe((result) => {
+      this.isSmallScreen = result.matches;
     });
   }
 
