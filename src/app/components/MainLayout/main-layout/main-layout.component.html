@@ -1,0 +1,26 @@
+<div class="main-layout-container">
+  <mat-toolbar class="toolbar">
+    <div class="logo-container">
+      <img src="../../../../assets/logo.jpg" alt="Logo" />
+    </div>
+    <span class="spacer"></span>
+
+    <div class="user-container" [matMenuTriggerFor]="menu">
+      <div class="user-avatar">
+        <img src="../../../../assets/avatar.png" alt="Avatar" />
+      </div>
+
+      <span>{{ currentUser?.displayName }}</span>
+
+      <mat-icon>expand_more</mat-icon>
+    </div>
+
+    <mat-menu class="dropdown-menu" #menu="matMenu">
+      <button class="logout-button" mat-menu-item (click)="logout()">
+        Logout
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+
+  <ng-content></ng-content>
+</div>

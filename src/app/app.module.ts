@@ -25,6 +25,7 @@ import { SnackbarComponent } from './components/controls/snackbar/snackbar.compo
 import { SpinnerComponent } from './components/controls/spinner/spinner.component';
 import { ChatUserComponent } from './components/ChatUser/chat-user/chat-user.component';
 import { ChatMessageComponent } from './components/ChatMessage/chat-message/chat-message.component';
+import { MainLayoutComponent } from './components/MainLayout/main-layout/main-layout.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ChatMessageComponent } from './components/ChatMessage/chat-message/chat
     SpinnerComponent,
     ChatUserComponent,
     ChatMessageComponent,
+    MainLayoutComponent,
   ],
   imports: [
     BrowserModule,

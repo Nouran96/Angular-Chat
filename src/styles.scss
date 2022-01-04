@@ -3,7 +3,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;700&display=swap");
 
 $helper_text_color: #b7b7b7;
-$links_color: rgb(48, 121, 190);
+// $links_color: rgb(48, 121, 190);
+$main_color: cadetblue;
 
 html,
 body {
@@ -21,6 +22,11 @@ h4,
 h5,
 h6 {
   font-weight: 600;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 .flex-container {

@@ -1,0 +1,49 @@
+.main-layout-container {
+  background: url("../../../../assets/main_bg_4.jpg");
+  background-size: cover;
+  min-height: 100vh;
+
+  .toolbar {
+    background-color: white;
+    box-shadow: 1px 1px 3px #ddd;
+    overflow-y: hidden;
+    align-items: center;
+    height: auto;
+    margin-bottom: 1rem;
+
+    .user-container {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      gap: 0.3rem;
+
+      span {
+        font-size: 0.7em;
+      }
+
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+
+    .logo-container {
+      width: 55px;
+      height: 55px;
+    }
+
+    .spacer {
+      flex: 1 1 auto;
+    }
+  }
+}
+
+.dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .logout-button {
+    color: #e25151;
+  }
+}

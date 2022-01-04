@@ -1,3 +1,13 @@
-<router-outlet></router-outlet>
+<ng-container *ngIf="!currentUser">
+  <ng-container *ngTemplateOutlet="routerOutlet"></ng-container>
+</ng-container>
+
+<app-main-layout *ngIf="currentUser" [currentUser]="currentUser">
+  <ng-container *ngTemplateOutlet="routerOutlet"></ng-container>
+</app-main-layout>
+
+<ng-template #routerOutlet>
+  <router-outlet></router-outlet>
+</ng-template>
 
 <app-snackbar></app-snackbar>
