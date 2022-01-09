@@ -35,7 +35,7 @@ export class ChatComponent {
 
   constructor(
     private firestore: AngularFirestore,
-    private store: Store,
+    public store: Store,
     private breakpointObserver: BreakpointObserver
   ) {
     store.select(selectCurrentUser).subscribe((data) => {

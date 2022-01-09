@@ -13,33 +13,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Query } from 'firebase/firestore';
 import { BehaviorSubject, of } from 'rxjs';
+import {
+  ActivatedRouteStub,
+  FireAuthStub,
+  FirestoreStub,
+  routerSpy,
+  storeSpy,
+} from 'src/app/utils/Stubs';
 import { ButtonComponent } from '../../controls/button/button.component';
 import { InputFieldComponent } from '../../controls/input-field/input-field.component';
 
 import { AuthFormComponent } from './auth-form.component';
-
-const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
-const storeSpy = jasmine.createSpyObj('Store', ['dispatch']);
-const ActivatedRouteStub = { url: of([{ path: 'login' }]) };
-
-const FireAuthStub = {
-  signInWithEmailAndPassword: (email: string, password: string) => {
-    return new Promise((resolve, reject) => resolve(''));
-  },
-  createUserWithEmailAndPassword: (email: string, password: string) => {
-    return new Promise((resolve, reject) => resolve(''));
-  },
-};
-
-const FirestoreStub = {
-  collection: (name: string, queryFn?: QueryFn) => ({
-    doc: (_id: string) => ({
-      valueChanges: () => new BehaviorSubject({ foo: 'bar' }),
-      set: (_d: any) => new Promise((resolve, _reject) => resolve('')),
-    }),
-    get: () => new BehaviorSubject({ empty: true }),
-  }),
-};
 
 describe('AuthFormComponent', () => {
   let component: AuthFormComponent;
