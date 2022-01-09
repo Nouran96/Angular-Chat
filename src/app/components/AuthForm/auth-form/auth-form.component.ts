@@ -110,7 +110,6 @@ export class AuthFormComponent {
 
     if (!this.isLoading) {
       this.isLoading = true;
-
       this.auth
         .signInWithEmailAndPassword(email.value, password.value)
         .then((credentials) => {
