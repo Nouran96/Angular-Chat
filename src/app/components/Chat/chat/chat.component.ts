@@ -2,19 +2,12 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import {
   Component,
   ElementRef,
-  Input,
-  SimpleChanges,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Store } from '@ngrx/store';
-import { Firestore } from 'firebase/firestore';
-import { Observable, OperatorFunction } from 'rxjs';
-import { first, map, filter } from 'rxjs/operators';
 import { selectCurrentUser } from 'src/app/store/selectors/auth.selector';
-import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-chat',

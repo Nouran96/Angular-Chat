@@ -26,6 +26,9 @@ import { SpinnerComponent } from './components/controls/spinner/spinner.componen
 import { ChatUserComponent } from './components/ChatUser/chat-user/chat-user.component';
 import { ChatMessageComponent } from './components/ChatMessage/chat-message/chat-message.component';
 import { MainLayoutComponent } from './components/MainLayout/main-layout/main-layout.component';
+import { HttpClientModule } from '@angular/common/http';
+import { BannerComponent } from './components/banner/banner/banner.component';
+import { AllRestaurantsComponent } from './components/allRestaurants/all-restaurants/all-restaurants.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +45,8 @@ import { MainLayoutComponent } from './components/MainLayout/main-layout/main-la
     ChatUserComponent,
     ChatMessageComponent,
     MainLayoutComponent,
+    BannerComponent,
+    AllRestaurantsComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +57,7 @@ import { MainLayoutComponent } from './components/MainLayout/main-layout/main-la
     AngularFireDatabaseModule,
     AngularFirestoreModule,
     AngularFireAuthModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MaterialUiModule,
     StoreModule.forRoot(reducers),

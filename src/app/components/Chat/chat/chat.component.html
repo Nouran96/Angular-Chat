@@ -1,27 +1,15 @@
 <div class="chat-container">
   <div class="users-container" *ngIf="!isSmallScreen">
-    <div *ngFor="let user of users | async">
-      <app-chat-user
-        *ngIf="user.email !== currentUser.email"
-        (click)="openChatRoom(user)"
-        [user]="user"
-      ></app-chat-user>
-    </div>
+    <ng-container *ngTemplateOutlet="usersList"></ng-container>
   </div>
 
   <div *ngIf="isSmallScreen">
-    <button mat-icon-button [matMenuTriggerFor]="menu">
+    <button class="menu-icon" mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>menu</mat-icon>
     </button>
 
     <mat-menu class="user-menu" #menu="matMenu">
-      <div *ngFor="let user of users | async">
-        <app-chat-user
-          *ngIf="user.email !== currentUser.email"
-          (click)="openChatRoom(user)"
-          [user]="user"
-        ></app-chat-user>
-      </div>
+      <ng-container *ngTemplateOutlet="usersList"></ng-container>
     </mat-menu>
   </div>
 
@@ -68,5 +56,15 @@
 <ng-template #startChat>
   <div class="no-chat">
     <h3>Select a user to chat with</h3>
+  </div>
+</ng-template>
+
+<ng-template #usersList>
+  <div *ngFor="let user of users | async">
+    <app-chat-user
+      *ngIf="user.email !== currentUser.email"
+      (click)="openChatRoom(user)"
+      [user]="user"
+    ></app-chat-user>
   </div>
 </ng-template>

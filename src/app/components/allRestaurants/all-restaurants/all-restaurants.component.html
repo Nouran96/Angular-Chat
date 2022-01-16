@@ -1,0 +1,17 @@
+<section>
+  <h2>All Restaurants</h2>
+
+  <div class="restaurants-container" *ngIf="restaurants.length > 0">
+    <mat-card *ngFor="let restaurant of restaurants" class="restaurant-card">
+      <img
+        mat-card-image
+        src="../../../../assets/restaurant-placeholder.png"
+        alt=""
+      />
+
+      <mat-card-content>
+        <h3>{{ restaurant.restaurant_name }}</h3>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</section>

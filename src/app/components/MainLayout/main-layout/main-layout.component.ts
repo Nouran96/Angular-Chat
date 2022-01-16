@@ -11,19 +11,8 @@ import { Router } from '@angular/router';
 })
 export class MainLayoutComponent implements OnInit {
   @Input() currentUser: firebase.default.User | null;
-  isSmallScreen: boolean;
 
-  constructor(
-    private auth: AngularFireAuth,
-    private router: Router,
-    private breakpointObserver: BreakpointObserver
-  ) {
-    const layoutChanges = breakpointObserver.observe(['(max-width: 680px)']);
-
-    layoutChanges.subscribe((result) => {
-      this.isSmallScreen = result.matches;
-    });
-  }
+  constructor(private auth: AngularFireAuth, private router: Router) {}
 
   ngOnInit(): void {}
 

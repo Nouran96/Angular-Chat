@@ -1,0 +1,59 @@
+.banner {
+  //   background: #ffeee5 !important;
+  background: #64afa8;
+  height: 390px;
+  margin-top: -15px;
+  z-index: 1;
+  position: relative;
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.25);
+    z-index: 2;
+  }
+
+  .banner-imgs {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    overflow: hidden;
+
+    .img-1 {
+      position: absolute;
+      top: 30px;
+      left: 0;
+      width: 194px;
+    }
+
+    .img-2 {
+      position: absolute;
+      bottom: -25px;
+      right: 0;
+      width: 349px;
+    }
+  }
+
+  .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 100%;
+
+    h1 {
+      font-weight: 600;
+      text-align: center;
+      color: white;
+      font-size: 2.5rem;
+      line-height: 1.3;
+    }
+  }
+}
