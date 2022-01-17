@@ -29,6 +29,7 @@ import { MainLayoutComponent } from './components/MainLayout/main-layout/main-la
 import { HttpClientModule } from '@angular/common/http';
 import { BannerComponent } from './components/banner/banner/banner.component';
 import { AllRestaurantsComponent } from './components/allRestaurants/all-restaurants/all-restaurants.component';
+import { StylePaginatorDirective } from './directives/style-paginator.directive';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { AllRestaurantsComponent } from './components/allRestaurants/all-restaur
     MainLayoutComponent,
     BannerComponent,
     AllRestaurantsComponent,
+    StylePaginatorDirective,
   ],
   imports: [
     BrowserModule,

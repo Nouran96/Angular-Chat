@@ -10,6 +10,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material/card';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { LayoutModule } from '@angular/cdk/layout';
 
 const modules = [
@@ -23,6 +24,7 @@ const modules = [
   MatMenuModule,
   LayoutModule,
   MatCardModule,
+  MatPaginatorModule,
 ];
 
 @NgModule({

@@ -6,6 +6,7 @@ section {
     justify-content: center;
     flex-wrap: wrap;
     gap: 1rem;
+    margin-bottom: 1.5rem;
 
     .restaurant-card {
       padding: 0.5rem;
@@ -13,7 +14,7 @@ section {
       cursor: pointer;
 
       &:hover {
-        transform: scale(1.5);
+        transform: scale(1.1);
       }
 
       img {
@@ -27,5 +28,11 @@ section {
         font-weight: 500;
       }
     }
+  }
+
+  mat-paginator {
+    display: flex !important;
+    justify-content: center;
+    background: transparent !important;
   }
 }

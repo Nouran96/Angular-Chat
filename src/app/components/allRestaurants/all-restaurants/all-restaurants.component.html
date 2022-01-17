@@ -5,13 +5,27 @@
     <mat-card *ngFor="let restaurant of restaurants" class="restaurant-card">
       <img
         mat-card-image
-        src="../../../../assets/restaurant-placeholder.png"
+        [src]="
+          restaurant.images?.cropped
+            ? restaurant.images?.cropped[0]
+            : '../../../../assets/restaurant-placeholder.png'
+        "
         alt=""
       />
 
       <mat-card-content>
-        <h3>{{ restaurant.restaurant_name }}</h3>
+        <h3>{{ restaurant.name }}</h3>
       </mat-card-content>
     </mat-card>
   </div>
+
+  <mat-paginator
+    *ngIf="pagination"
+    hidePageSize
+    showFirstLastButtons
+    [length]="pagination.total_entries"
+    [pageSize]="pagination.per_page"
+    (page)="onPageChange($event)"
+  >
+  </mat-paginator>
 </section>
