@@ -1,8 +1,9 @@
 .spinner-container {
   margin: 0.3rem;
+  stroke: white;
 
   .mat-progress-spinner circle,
   .mat-spinner circle {
-    stroke: white;
+    stroke: inherit;
   }
 }

@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Pagination } from 'src/app/models/Restaurants';
 import { RestaurantsService } from 'src/app/services/restaurants/restaurants.service';
@@ -11,12 +17,16 @@ import { RestaurantsService } from 'src/app/services/restaurants/restaurants.ser
 })
 export class AllRestaurantsComponent implements OnInit {
   restaurants: any[] = [];
-  pagination: Pagination;
+  pagination: Pagination | null;
+  isLoading: boolean = true;
+
+  @ViewChild('restaurantsContainer') restaurantsContainer: ElementRef;
 
   constructor(private restaurantsService: RestaurantsService) {}
 
   ngOnInit(): void {
     this.restaurantsService.getRestaurants().subscribe((res) => {
+      this.isLoading = false;
       this.restaurants = res.results;
       this.pagination = res.pagination;
     });
@@ -47,11 +57,19 @@ export class AllRestaurantsComponent implements OnInit {
   }
 
   onPageChange(e: PageEvent) {
+    this.restaurants = [];
+    this.pagination = null;
+    this.isLoading = true;
+
     this.restaurantsService.getRestaurants(e.pageIndex + 1).subscribe((res) => {
+      this.isLoading = false;
       this.restaurants = res.results;
       this.pagination = res.pagination;
-    });
 
-    window.scrollTo({ top: 400, behavior: 'smooth' });
+      window.scrollTo({
+        top: this.restaurantsContainer.nativeElement.scrollTop + 160,
+        behavior: 'smooth',
+      });
+    });
   }
 }

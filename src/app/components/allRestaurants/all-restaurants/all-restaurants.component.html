@@ -1,31 +1,42 @@
 <section>
   <h2>All Restaurants</h2>
 
-  <div class="restaurants-container" *ngIf="restaurants.length > 0">
-    <mat-card *ngFor="let restaurant of restaurants" class="restaurant-card">
-      <img
-        mat-card-image
-        [src]="
-          restaurant.images?.cropped
-            ? restaurant.images?.cropped[0]
-            : '../../../../assets/restaurant-placeholder.png'
-        "
-        alt=""
-      />
+  <div class="main_content" #restaurantsContainer>
+    <div
+      class="restaurants-container"
+      *ngIf="restaurants.length > 0 && !isLoading"
+    >
+      <mat-card
+        [routerLink]="['/restaurant', restaurant.id]"
+        *ngFor="let restaurant of restaurants"
+        class="restaurant-card"
+      >
+        <img
+          mat-card-image
+          [src]="restaurant.images?.cropped[0]"
+          onerror="this.src='../../../../assets/restaurant-placeholder.png'"
+          alt=""
+        />
 
-      <mat-card-content>
-        <h3>{{ restaurant.name }}</h3>
-      </mat-card-content>
-    </mat-card>
+        <mat-card-content>
+          <h3>{{ restaurant.name }}</h3>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <mat-paginator
+      *ngIf="pagination && !isLoading"
+      hidePageSize
+      showFirstLastButtons
+      [pageIndex]="pagination.current_page - 1"
+      [length]="pagination.total_entries"
+      [pageSize]="pagination.per_page"
+      (page)="onPageChange($event)"
+    >
+    </mat-paginator>
+
+    <div class="spinner">
+      <app-spinner *ngIf="isLoading" color="teal" [diameter]="50"></app-spinner>
+    </div>
   </div>
-
-  <mat-paginator
-    *ngIf="pagination"
-    hidePageSize
-    showFirstLastButtons
-    [length]="pagination.total_entries"
-    [pageSize]="pagination.per_page"
-    (page)="onPageChange($event)"
-  >
-  </mat-paginator>
 </section>

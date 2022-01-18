@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-spinner',
@@ -7,6 +7,9 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None,
 })
 export class SpinnerComponent implements OnInit {
+  @Input() diameter: number = 30;
+  @Input() color: string = 'white';
+
   constructor() {}
 
   ngOnInit(): void {}
