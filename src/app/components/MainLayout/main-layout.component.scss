@@ -16,7 +16,7 @@
     overflow-y: hidden;
     align-items: center;
     height: auto;
-    margin-bottom: 1rem;
+    // margin-bottom: 1rem;
 
     .user-container {
       display: flex;
@@ -37,6 +37,7 @@
     .logo-container {
       width: 55px;
       height: 55px;
+      cursor: pointer;
     }
 
     .spacer {

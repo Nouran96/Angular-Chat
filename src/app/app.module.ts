@@ -11,9 +11,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 import { reducers } from './store/reducers';
 import { AppComponent } from './app.component';
-import { ChatComponent } from './components/Chat/chat/chat.component';
+import { ChatComponent } from './components/Chat/chat.component';
 import { environment } from 'src/environments/environment';
-import { AuthFormComponent } from './components/AuthForm/auth-form/auth-form.component';
+import { AuthFormComponent } from './components/AuthForm/auth-form.component';
 import { LoginComponent } from './views/login/login.component';
 import { HomeComponent } from './views/home/home.component';
 import { RegisterComponent } from './views/register/register.component';
@@ -23,14 +23,16 @@ import { InputFieldComponent } from './components/controls/input-field/input-fie
 import { ButtonComponent } from './components/controls/button/button.component';
 import { SnackbarComponent } from './components/controls/snackbar/snackbar.component';
 import { SpinnerComponent } from './components/controls/spinner/spinner.component';
-import { ChatUserComponent } from './components/ChatUser/chat-user/chat-user.component';
-import { ChatMessageComponent } from './components/ChatMessage/chat-message/chat-message.component';
-import { MainLayoutComponent } from './components/MainLayout/main-layout/main-layout.component';
+import { ChatUserComponent } from './components/ChatUser/chat-user.component';
+import { ChatMessageComponent } from './components/ChatMessage/chat-message.component';
+import { MainLayoutComponent } from './components/MainLayout/main-layout.component';
 import { HttpClientModule } from '@angular/common/http';
-import { BannerComponent } from './components/banner/banner/banner.component';
-import { AllRestaurantsComponent } from './components/allRestaurants/all-restaurants/all-restaurants.component';
+import { BannerComponent } from './components/Banner/banner.component';
+import { AllRestaurantsComponent } from './components/AllRestaurants/all-restaurants.component';
 import { StylePaginatorDirective } from './directives/style-paginator.directive';
-import { RestaurantComponent } from './views/restaurant/restaurant/restaurant.component';
+import { RestaurantComponent } from './views/restaurant/restaurant.component';
+import { RestaurantDetailsComponent } from './components/RestaurantDetails/restaurant-details.component';
+import { SafePipe } from './pipes/safe.pipe';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,8 @@ import { RestaurantComponent } from './views/restaurant/restaurant/restaurant.co
     AllRestaurantsComponent,
     StylePaginatorDirective,
     RestaurantComponent,
+    RestaurantDetailsComponent,
+    SafePipe,
   ],
   imports: [
     BrowserModule,

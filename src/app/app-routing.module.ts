@@ -7,8 +7,8 @@ import { NotAuthGuard } from './guards/notAuth/not-auth.guard';
 import { HomeComponent } from './views/home/home.component';
 import { AuthGuard } from './guards/auth/auth.guard';
 import { RegisterComponent } from './views/register/register.component';
-import { ChatComponent } from './components/Chat/chat/chat.component';
-import { RestaurantComponent } from './views/restaurant/restaurant/restaurant.component';
+import { ChatComponent } from './components/Chat/chat.component';
+import { RestaurantComponent } from './views/restaurant/restaurant.component';
 
 const routes: Routes = [
   {

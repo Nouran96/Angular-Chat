@@ -20,25 +20,9 @@ export class RestaurantsService {
     return this.http.get<RestaurantsResponse>(
       `https://api.eet.nu/venues?host=api.eet.nu&tags=online-menu&per_page=25&page=${page}`
     );
-    // return this.http
-    //   .get<RestaurantsResponse>(
-    //     `${environment.restaurantsApiBaseUrl}/restaurants/state/NY`,
-    //     {
-    //       headers: { 'X-API-KEY': environment.restaurantsApiKey },
-    //     }
-    //   )
-    //   .pipe(map((res) => res.data));
   }
 
-  getRestaurant(id: number) {
+  getRestaurant(id: string) {
     return this.http.get(`https://api.eet.nu/venues/${id}`);
-    // return this.http
-    //   .get<RestaurantsResponse>(
-    //     `${environment.restaurantsApiBaseUrl}/restaurant/${id}`,
-    //     {
-    //       headers: { 'X-API-KEY': environment.restaurantsApiKey },
-    //     }
-    //   )
-    //   .pipe(map((res) => res.data));
   }
 }
