@@ -33,6 +33,7 @@ import { StylePaginatorDirective } from './directives/style-paginator.directive'
 import { RestaurantComponent } from './views/restaurant/restaurant.component';
 import { RestaurantDetailsComponent } from './components/RestaurantDetails/restaurant-details.component';
 import { SafePipe } from './pipes/safe.pipe';
+import { RestaurantCardComponent } from './components/RestaurantCard/restaurant-card.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { SafePipe } from './pipes/safe.pipe';
     RestaurantComponent,
     RestaurantDetailsComponent,
     SafePipe,
+    RestaurantCardComponent,
   ],
   imports: [
     BrowserModule,

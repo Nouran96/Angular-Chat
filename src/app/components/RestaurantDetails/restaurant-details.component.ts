@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { RestaurantDetails } from 'src/app/models/Restaurants';
 import { RestaurantsService } from 'src/app/services/restaurants/restaurants.service';
 import { environment } from 'src/environments/environment';
 
@@ -10,7 +11,7 @@ import { environment } from 'src/environments/environment';
 })
 export class RestaurantDetailsComponent implements OnInit {
   restaurantID: string;
-  restaurant: any;
+  restaurant: RestaurantDetails;
   mapSrc: string;
 
   constructor(
@@ -22,19 +23,22 @@ export class RestaurantDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.restaurantID) {
-      this.restaurantService
-        .getRestaurant(this.restaurantID)
-        .subscribe((res: any) => {
-          this.restaurant = res;
-          this.mapSrc = encodeURI(
-            `https://www.google.com/maps/embed/v1/place?key=${
-              environment.firebase.apiKey
-            }&q=${`${res.address?.street},${res.address?.city},${res.address?.country}`}&center=${
-              res.geolocation?.latitude
-            },${res.geolocation?.longitude}`
-          );
-          console.log(res, this.mapSrc);
-        });
+      this.getRestaurant();
     }
+  }
+
+  getRestaurant() {
+    this.restaurantService
+      .getRestaurant(this.restaurantID)
+      .subscribe((res: any) => {
+        this.restaurant = res;
+        this.mapSrc = encodeURI(
+          `https://www.google.com/maps/embed/v1/place?key=${
+            environment.firebase.apiKey
+          }&q=${`${res.address?.street},${res.address?.city},${res.address?.country}`}&center=${
+            res.geolocation?.latitude
+          },${res.geolocation?.longitude}`
+        );
+      });
   }
 }
