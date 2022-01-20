@@ -1,0 +1,18 @@
+<mat-tab-group *ngIf="menuSections">
+  <mat-tab *ngFor="let section of menuSections" [label]="section.section_name">
+    <p>{{ section.description }}</p>
+    <div class="items-container">
+      <div *ngFor="let item of section.menu_items" class="menu-item-container">
+        <div class="image-container">
+          <img [src]="item.image" />
+        </div>
+
+        <div class="content-container">
+          <h3>{{ item.name }}</h3>
+          <span class="desc">{{ item.description }}</span>
+          <span class="price">{{ item.price | currency }}</span>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>

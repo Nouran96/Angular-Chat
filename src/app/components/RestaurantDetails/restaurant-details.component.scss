@@ -1,0 +1,10 @@
+.restaurant-details {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1rem auto;
+
+  app-restaurant-card,
+  app-menu {
+    width: calc(50% - 0.5rem);
+  }
+}

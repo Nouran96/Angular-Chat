@@ -51,11 +51,3 @@
     </iframe>
   </mat-card-content>
 </mat-card>
-
-<mat-tab-group *ngIf="menuSections">
-  <mat-tab
-    *ngFor="let section of menuSections"
-    [label]="section.section_name"
-    >{{ section.description }}</mat-tab
-  >
-</mat-tab-group>
