@@ -1,0 +1,9 @@
+@mixin mainGradient($degree: 10deg) {
+  background: rgb(118, 210, 192);
+  background: linear-gradient(
+    $degree,
+    rgba(118, 210, 192, 0.4574872185) 0%,
+    rgba(161, 232, 218, 0.4266748936) 33%,
+    white 100%
+  );
+}

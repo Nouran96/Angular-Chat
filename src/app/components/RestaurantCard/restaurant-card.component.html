@@ -3,51 +3,59 @@
     <mat-card-title>{{ restaurant.name }}</mat-card-title>
     <mat-card-subtitle>{{ restaurant.category }}</mat-card-subtitle>
   </mat-card-header>
-  <div class="image-container">
-    <img
-      mat-card-image
-      [src]="restaurant.images.original[0]"
-      onerror="this.src='src/assets/restaurant-placeholder.png'"
-    />
+  <div class="d-flex flex-wrap content-container">
+    <div class="d-flex flex-column first-column">
+      <div class="image-container">
+        <img
+          mat-card-image
+          [src]="restaurant.images.original[0]"
+          onerror="this.src='src/assets/restaurant-placeholder.png'"
+        />
+      </div>
+
+      <p class="detail-record" *ngIf="restaurant.telephone">
+        <mat-icon>call</mat-icon>
+        <span>{{ restaurant.telephone }}</span>
+      </p>
+
+      <p
+        class="detail-record"
+        *ngIf="restaurant.menus && restaurant.menus[0].url"
+      >
+        <mat-icon>restaurant_menu</mat-icon>
+        <a class="link" target="_blank" [href]="restaurant.menus[0].url"
+          >Menu link</a
+        >
+      </p>
+
+      <p class="detail-record" *ngIf="restaurant.address">
+        <mat-icon>location_on</mat-icon>
+        <span
+          >{{ restaurant.address.street }}, {{ restaurant.address.city }},
+          {{ restaurant.address.country }}</span
+        >
+      </p>
+    </div>
+
+    <mat-card-content>
+      <p *ngIf="restaurant.description">
+        <span>{{ getDescription() }}</span>
+        <a class="show-more ps-1" (click)="toggleShowMore()">{{
+          showMore ? "Show more" : "Show less"
+        }}</a>
+      </p>
+
+      <iframe
+        *ngIf="mapSrc"
+        width="100%"
+        height="200"
+        frameborder="0"
+        style="border: 0"
+        loading="lazy"
+        allowfullscreen
+        [src]="mapSrc | safe"
+      >
+      </iframe>
+    </mat-card-content>
   </div>
-  <mat-card-content>
-    <p *ngIf="restaurant.description">
-      {{ restaurant.description }}
-    </p>
-
-    <p class="detail-record" *ngIf="restaurant.telephone">
-      <mat-icon>call</mat-icon>
-      <span>{{ restaurant.telephone }}</span>
-    </p>
-
-    <p
-      class="detail-record"
-      *ngIf="restaurant.menus && restaurant.menus[0].url"
-    >
-      <mat-icon>restaurant_menu</mat-icon>
-      <a class="link" target="_blank" [href]="restaurant.menus[0].url"
-        >Menu link</a
-      >
-    </p>
-
-    <p class="detail-record" *ngIf="restaurant.address">
-      <mat-icon>location_on</mat-icon>
-      <span
-        >{{ restaurant.address.street }}, {{ restaurant.address.city }},
-        {{ restaurant.address.country }}</span
-      >
-    </p>
-
-    <iframe
-      *ngIf="mapSrc"
-      width="100%"
-      height="200"
-      frameborder="0"
-      style="border: 0"
-      loading="lazy"
-      allowfullscreen
-      [src]="mapSrc | safe"
-    >
-    </iframe>
-  </mat-card-content>
 </mat-card>

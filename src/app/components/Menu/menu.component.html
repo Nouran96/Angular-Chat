@@ -1,6 +1,6 @@
-<mat-tab-group *ngIf="menuSections">
+<mat-tab-group *ngIf="menuSections" class="tabs-group">
   <mat-tab *ngFor="let section of menuSections" [label]="section.section_name">
-    <p>{{ section.description }}</p>
+    <p class="section-desc">{{ section.description }}</p>
     <div class="items-container">
       <div *ngFor="let item of section.menu_items" class="menu-item-container">
         <div class="image-container">
@@ -8,7 +8,7 @@
         </div>
 
         <div class="content-container">
-          <h3>{{ item.name }}</h3>
+          <h5>{{ item.name }}</h5>
           <span class="desc">{{ item.description }}</span>
           <span class="price">{{ item.price | currency }}</span>
         </div>

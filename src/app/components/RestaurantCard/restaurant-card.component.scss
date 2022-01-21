@@ -1,38 +1,85 @@
 @import "../../../styles.scss";
+@import "bootstrap/scss/mixins/_breakpoints";
 
 .restaurant-card {
   max-width: 100%;
-  min-width: 320px;
+  // min-width: 320px;
   // margin: 1rem auto;
 
-  .detail-record {
-    display: flex;
-    align-items: center;
+  .content-container {
     gap: 0.5rem;
 
-    mat-icon {
-      color: $main_color;
-    }
+    .detail-record {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
 
-    .link {
-      text-decoration: none;
-      color: rgba(0, 0, 0, 0.7);
-      font-weight: 500;
+      mat-icon {
+        color: $main_color;
+      }
 
-      &:hover {
-        font-weight: 700;
+      .link {
+        text-decoration: none;
+        color: rgba(0, 0, 0, 0.7);
+        font-weight: 500;
+
+        &:hover {
+          font-weight: 700;
+        }
       }
     }
-  }
 
-  .image-container {
-    img {
-      max-width: 100%;
-      max-height: 400px;
-      height: auto;
-      // object-fit: cover;
-      margin: 0;
-      margin-bottom: 1rem;
+    .show-more {
+      cursor: pointer;
+      color: $main_color;
+      font-weight: 500;
+      text-decoration: none;
+
+      &:hover {
+        font-weight: 600;
+      }
+    }
+
+    mat-card-content {
+      width: 58%;
+    }
+
+    .first-column {
+      width: 40%;
+    }
+
+    .image-container {
+      img {
+        max-width: 100%;
+        max-height: 400px;
+        height: auto;
+        margin: 0;
+        margin-bottom: 1rem;
+      }
+    }
+
+    @include media-breakpoint-down(lg) {
+      mat-card-content,
+      .first-column {
+        width: 100%;
+      }
+    }
+
+    @include media-breakpoint-down(md) {
+      mat-card-content {
+        width: 58%;
+      }
+
+      .first-column {
+        width: 40%;
+      }
+    }
+
+    @include media-breakpoint-down(sm) {
+      mat-card-content,
+      .first-column {
+        width: 100%;
+      }
     }
   }
 }

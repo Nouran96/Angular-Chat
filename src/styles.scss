@@ -1,8 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./theme.scss";
+@import "node_modules/bootstrap/scss/bootstrap.scss";
+@import "./app/styles/mixins";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;700&display=swap");
 
 $helper_text_color: #b7b7b7;
+$error-red: #e25151;
 // $links_color: rgb(48, 121, 190);
 $main_color: cadetblue;
 

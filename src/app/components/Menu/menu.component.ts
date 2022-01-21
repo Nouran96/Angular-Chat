@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MenuSections } from 'src/app/mocks/MenuItems';
 import { MenuSection } from 'src/app/models/Restaurants';
 
@@ -6,6 +6,7 @@ import { MenuSection } from 'src/app/models/Restaurants';
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class MenuComponent implements OnInit {
   menuSections: Array<MenuSection>;

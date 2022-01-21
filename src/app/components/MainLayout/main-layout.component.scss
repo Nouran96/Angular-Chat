@@ -1,12 +1,8 @@
+@import "../../../styles.scss";
+
 .main-layout-container {
   // background: url("../../../../assets/main_bg_4.jpg");
-  background: rgb(118, 210, 192);
-  background: linear-gradient(
-    10deg,
-    rgba(118, 210, 192, 0.45748721852022056) 0%,
-    rgba(161, 232, 218, 0.42667489359024857) 33%,
-    rgba(255, 255, 255, 1) 100%
-  );
+  @include mainGradient;
   background-size: cover;
   min-height: 100vh;
 
@@ -52,6 +48,6 @@
   align-items: center;
 
   .logout-button {
-    color: #e25151;
+    color: $error-red;
   }
 }

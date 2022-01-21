@@ -1,53 +1,88 @@
 @import "../../../styles.scss";
 
-.items-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+.tabs-group {
   padding: 1rem;
+  background: white;
+  border-radius: 7px;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
 
-  .menu-item-container {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-    width: 100%;
-    // width: calc(50% - 2.5rem);
-    background: white;
-    border-radius: 7px;
-    box-shadow: 2px -1px 5px -1px rgb(0 0 0 / 20%),
-      0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
-    padding: 1rem;
+  .mat-tab-header {
+    .mat-tab-label {
+      background: teal;
+      color: white;
+      border-radius: 25px;
+      margin: 0 0.2rem;
 
-    .image-container {
-      width: 100px;
-      height: 100px;
-      display: flex;
-
-      img {
-        width: 100%;
-        height: 100%;
-        border-radius: 7px;
+      &-active,
+      &:hover {
+        background: white;
+        color: teal;
+        border: 1px solid rgba(0, 0, 0, 0.3);
       }
     }
 
-    .content-container {
+    .mat-ink-bar {
+      display: none;
+    }
+  }
+
+  .section-desc {
+    padding: 1rem;
+    margin-bottom: 0;
+    color: $error-red;
+  }
+
+  .items-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 1rem;
+
+    .menu-item-container {
+      @include mainGradient(300deg);
       display: flex;
-      flex-direction: column;
+      gap: 0.5rem;
+      align-items: flex-start;
+      width: 100%;
+      // width: calc(50% - 2.5rem);
+      // background: white;
+      border-radius: 7px;
+      box-shadow: 2px -1px 5px -1px rgb(0 0 0 / 20%),
+        0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+      padding: 1rem;
 
-      h3 {
-        margin-bottom: 0.5rem;
-        line-height: 1.3;
-        color: $main_color;
+      .image-container {
+        width: 100px;
+        height: 100px;
+        display: flex;
+
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 7px;
+        }
       }
 
-      .desc {
-        color: $helper_text_color;
-        margin-bottom: 0.5rem;
-      }
+      .content-container {
+        display: flex;
+        flex-direction: column;
 
-      .price {
-        font-weight: 600;
-        font-size: 1rem;
+        h5 {
+          margin-bottom: 0.5rem;
+          line-height: 1.3;
+          color: $main_color;
+        }
+
+        .desc {
+          color: $helper_text_color;
+          margin-bottom: 0.5rem;
+        }
+
+        .price {
+          font-weight: 600;
+          font-size: 1rem;
+        }
       }
     }
   }

@@ -1,8 +1,14 @@
-<div class="restaurant-details">
-  <app-restaurant-card
-    [restaurant]="restaurant"
-    [mapSrc]="mapSrc"
-  ></app-restaurant-card>
+<div class="container-fluid">
+  <div class="row restaurant-details">
+    <div class="col-md-6 col-12 mb-3">
+      <app-restaurant-card
+        [restaurant]="restaurant"
+        [mapSrc]="mapSrc"
+      ></app-restaurant-card>
+    </div>
 
-  <app-menu></app-menu>
+    <div class="col-md-6 col-12 menu-container">
+      <app-menu></app-menu>
+    </div>
+  </div>
 </div>
