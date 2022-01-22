@@ -7,10 +7,21 @@
           <img [src]="item.image" />
         </div>
 
-        <div class="content-container">
-          <h5>{{ item.name }}</h5>
-          <span class="desc">{{ item.description }}</span>
+        <div class="content-container flex-grow-1">
+          <h3>{{ item.name }}</h3>
+          <span class="desc" *ngIf="item.description">{{
+            item.description
+          }}</span>
           <span class="price">{{ item.price | currency }}</span>
+          <div class="d-flex justify-content-between flex-wrap cart-container">
+            <div class="d-flex align-items-center counter-container">
+              <app-button class="count-btn">+</app-button>
+              <span>1</span>
+              <app-button class="count-btn">-</app-button>
+            </div>
+
+            <app-button>Add to Cart</app-button>
+          </div>
         </div>
       </div>
     </div>
