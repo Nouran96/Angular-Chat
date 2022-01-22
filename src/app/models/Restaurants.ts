@@ -25,6 +25,7 @@ export interface RestaurantDetails {
 }
 
 export interface MenuItem {
+  id: number;
   name: string;
   description: string;
   price: number;
@@ -36,4 +37,13 @@ export interface MenuSection {
   section_name: string;
   description: string;
   menu_items: Array<MenuItem>;
+}
+
+export interface CartItem {
+  item: MenuItem;
+  quantity: number;
+}
+
+export interface CartState {
+  products: Array<CartItem>;
 }
