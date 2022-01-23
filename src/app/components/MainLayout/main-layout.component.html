@@ -5,20 +5,79 @@
     </div>
     <span class="spacer"></span>
 
-    <div class="user-container" [matMenuTriggerFor]="menu">
-      <div class="user-avatar">
-        <img src="../../../../assets/avatar.png" alt="Avatar" />
+    <div class="d-flex align-items-center gap-4">
+      <div
+        class="cart-icon d-flex align-items-center"
+        [matMenuTriggerFor]="cartItems"
+      >
+        <mat-icon>shopping_cart</mat-icon>
+        <span class="counter">{{ cartItemsCount }}</span>
       </div>
 
-      <span>{{ currentUser?.displayName }}</span>
+      <div class="user-container" [matMenuTriggerFor]="menu">
+        <div class="user-avatar">
+          <img src="../../../../assets/avatar.png" alt="Avatar" />
+        </div>
 
-      <mat-icon>expand_more</mat-icon>
+        <span>{{ currentUser?.displayName }}</span>
+
+        <mat-icon>expand_more</mat-icon>
+      </div>
     </div>
 
     <mat-menu class="dropdown-menu" #menu="matMenu">
       <button class="logout-button" mat-menu-item (click)="logout()">
         Logout
       </button>
+    </mat-menu>
+
+    <mat-menu class="cart-items-menu" #cartItems="matMenu">
+      <div class="no-items" *ngIf="cartItemsCount === 0">
+        <div class="icon-container">
+          <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
+        </div>
+        <p class="text-center mt-2 lead">Your cart is empty</p>
+      </div>
+
+      <div
+        *ngIf="cartItemsCount > 0"
+        class="d-flex flex-column gap-3 container-fluid"
+      >
+        <div
+          *ngFor="let item of cartProducts | keyvalue"
+          class="row align-items-center"
+        >
+          <div class="image-container col-3 px-0">
+            <img [src]="item.value.image" />
+          </div>
+
+          <div class="d-flex flex-column gap-1 col-8">
+            <span class="name">{{ item.value.name }}</span>
+            <div
+              class="d-flex justify-content-between align-items-center flex-wrap gap-1"
+            >
+              <span class="price">{{ item.value.price | currency }}</span>
+
+              <div class="counter-container d-flex gap-1 align-items-center">
+                <span class="btn">-</span>
+                <span>{{ item.value.quantity }}</span>
+                <span class="btn">+</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="remove-icon col-1">
+            <mat-icon>remove_circle</mat-icon>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between mt-3 total-price">
+          <span>Total</span>
+          <span class="price">{{
+            totalPrice | number: "1.0-2" | currency
+          }}</span>
+        </div>
+      </div>
     </mat-menu>
   </mat-toolbar>
 
