@@ -24,8 +24,9 @@ export const cartReducer = createReducer(
     },
   })),
   on(removeFromCart, (state, { itemID }) => {
-    delete state.products[itemID];
-    return { ...state };
+    const productsCopy = { ...state.products };
+    delete productsCopy[itemID];
+    return { ...state, products: { ...productsCopy } };
   }),
   on(increaseItemQuantity, (state, { itemID }) => ({
     ...state,

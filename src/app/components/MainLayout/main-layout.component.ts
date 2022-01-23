@@ -1,9 +1,15 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { isNgTemplate } from '@angular/compiler';
 import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { CartProducts, MenuItem } from 'src/app/models/Restaurants';
+import {
+  decreaseItemQuantity,
+  increaseItemQuantity,
+  removeFromCart,
+} from 'src/app/store/actions/cart.actions';
 import { selectCartProducts } from 'src/app/store/selectors/cart.selector';
 
 @Component({
@@ -48,5 +54,23 @@ export class MainLayoutComponent implements OnInit {
     });
 
     return total;
+  }
+
+  increaseItemQuantity(event: Event, itemID: keyof CartProducts) {
+    event.stopPropagation();
+
+    this.store.dispatch(increaseItemQuantity({ itemID: Number(itemID) }));
+  }
+
+  decreaseItemQuantity(event: Event, itemID: keyof CartProducts) {
+    event.stopPropagation();
+
+    this.store.dispatch(decreaseItemQuantity({ itemID: Number(itemID) }));
+  }
+
+  removeItem(event: Event, itemID: keyof CartProducts) {
+    event.stopPropagation();
+
+    this.store.dispatch(removeFromCart({ itemID: Number(itemID) }));
   }
 }

@@ -11,7 +11,7 @@
         [matMenuTriggerFor]="cartItems"
       >
         <mat-icon>shopping_cart</mat-icon>
-        <span class="counter">{{ cartItemsCount }}</span>
+        <span class="counter" *ngIf="cartItemsCount">{{ cartItemsCount }}</span>
       </div>
 
       <div class="user-container" [matMenuTriggerFor]="menu">
@@ -59,14 +59,24 @@
               <span class="price">{{ item.value.price | currency }}</span>
 
               <div class="counter-container d-flex gap-1 align-items-center">
-                <span class="btn">-</span>
+                <button
+                  class="btn"
+                  [disabled]="item.value.quantity === 1"
+                  (click)="decreaseItemQuantity($event, item.key)"
+                >
+                  -
+                </button>
                 <span>{{ item.value.quantity }}</span>
-                <span class="btn">+</span>
+                <span
+                  class="btn"
+                  (click)="increaseItemQuantity($event, item.key)"
+                  >+</span
+                >
               </div>
             </div>
           </div>
 
-          <div class="remove-icon col-1">
+          <div class="remove-icon col-1" (click)="removeItem($event, item.key)">
             <mat-icon>remove_circle</mat-icon>
           </div>
         </div>
