@@ -26,6 +26,7 @@
     "bootstrap": "^5.1.3",
     "firebase": "^9.6.1",
     "moment": "^2.29.1",
+    "ngrx-store-persist": "^1.0.20",
     "rxfire": "^6.0.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",

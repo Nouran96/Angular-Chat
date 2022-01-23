@@ -7,6 +7,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { storageSyncMetaReducer } from 'ngrx-store-persist';
 
 import { AppRoutingModule } from './app-routing.module';
 import { reducers } from './store/reducers';
@@ -74,7 +75,7 @@ import { CartCounterComponent } from './components/CartCounter/cart-counter.comp
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialUiModule,
-    StoreModule.forRoot(reducers),
+    StoreModule.forRoot(reducers, { metaReducers: [storageSyncMetaReducer] }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
