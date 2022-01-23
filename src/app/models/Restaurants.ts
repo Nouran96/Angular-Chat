@@ -44,6 +44,8 @@ export interface CartItem {
   quantity: number;
 }
 
+export type CartProducts = { [key: string]: MenuItem & { quantity: number } };
+
 export interface CartState {
-  products: Array<CartItem>;
+  products: CartProducts;
 }

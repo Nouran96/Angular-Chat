@@ -8,33 +8,43 @@ import {
 } from '../../actions/cart.actions';
 
 export const initialState: CartState = {
-  products: [],
+  products: {},
 };
 
 export const cartReducer = createReducer(
   initialState,
   on(addToCart, (state, { item, quantity }) => ({
     ...state,
-    products: [...state.products, { item, quantity }],
+    products: {
+      ...state.products,
+      [item.id]: {
+        ...item,
+        quantity: (state.products[item.id]?.quantity || 0) + quantity, // Concatenate new quantity if item already in cart
+      },
+    },
   })),
-  on(removeFromCart, (state, { itemID }) => ({
-    ...state,
-    products: state.products.filter((pro) => pro.item.id !== itemID),
-  })),
+  on(removeFromCart, (state, { itemID }) => {
+    delete state.products[itemID];
+    return { ...state };
+  }),
   on(increaseItemQuantity, (state, { itemID }) => ({
     ...state,
-    products: state.products.map((pro) => {
-      if (pro.item.id === itemID) pro.quantity++;
-
-      return pro;
-    }),
+    products: {
+      ...state.products,
+      [itemID]: {
+        ...state.products[itemID],
+        quantity: state.products[itemID].quantity + 1,
+      },
+    },
   })),
   on(decreaseItemQuantity, (state, { itemID }) => ({
     ...state,
-    products: state.products.map((pro) => {
-      if (pro.item.id === itemID) pro.quantity--;
-
-      return pro;
-    }),
+    products: {
+      ...state.products,
+      [itemID]: {
+        ...state.products[itemID],
+        quantity: state.products[itemID].quantity - 1,
+      },
+    },
   }))
 );

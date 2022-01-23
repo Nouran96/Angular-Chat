@@ -35,6 +35,7 @@ import { RestaurantDetailsComponent } from './components/RestaurantDetails/resta
 import { SafePipe } from './pipes/safe.pipe';
 import { RestaurantCardComponent } from './components/RestaurantCard/restaurant-card.component';
 import { MenuComponent } from './components/Menu/menu.component';
+import { CartCounterComponent } from './components/CartCounter/cart-counter.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { MenuComponent } from './components/Menu/menu.component';
     SafePipe,
     RestaurantCardComponent,
     MenuComponent,
+    CartCounterComponent,
   ],
   imports: [
     BrowserModule,

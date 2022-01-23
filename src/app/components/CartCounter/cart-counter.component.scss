@@ -1,0 +1,20 @@
+.cart-container {
+  gap: 0.5rem;
+
+  .counter-container {
+    span {
+      min-width: 45px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .count-btn {
+      padding: 0;
+      min-width: 30px;
+      font-size: 1.2rem;
+      border-radius: 15px;
+      height: 30px;
+      align-items: center;
+    }
+  }
+}

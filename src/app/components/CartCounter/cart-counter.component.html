@@ -1,0 +1,17 @@
+<div class="d-flex justify-content-between flex-wrap cart-container">
+  <div class="d-flex align-items-center counter-container">
+    <app-button
+      [disabled]="cartQuantity === 1"
+      class="count-btn"
+      (click)="decreaseCartQuantity()"
+      >-</app-button
+    >
+
+    <span>{{ cartQuantity }}</span>
+    <app-button class="count-btn" (click)="increaseCartQuantity()"
+      >+</app-button
+    >
+  </div>
+
+  <app-button (click)="addItemToCart()">Add to Cart</app-button>
+</div>

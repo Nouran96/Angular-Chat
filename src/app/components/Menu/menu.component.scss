@@ -56,6 +56,7 @@
         width: 100px;
         height: 100px;
         display: flex;
+        flex-shrink: 0;
 
         img {
           width: 100%;
@@ -68,27 +69,6 @@
         display: flex;
         flex-direction: column;
         height: 100%;
-
-        .cart-container {
-          gap: 0.5rem;
-        }
-
-        .counter-container {
-          span {
-            min-width: 45px;
-            display: flex;
-            justify-content: center;
-          }
-
-          .count-btn {
-            padding: 0;
-            min-width: 30px;
-            font-size: 1.2rem;
-            border-radius: 15px;
-            height: 30px;
-            align-items: center;
-          }
-        }
 
         h3 {
           margin-bottom: 0.5rem;

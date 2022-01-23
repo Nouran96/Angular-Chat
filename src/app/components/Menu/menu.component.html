@@ -13,15 +13,10 @@
             item.description
           }}</span>
           <span class="price">{{ item.price | currency }}</span>
-          <div class="d-flex justify-content-between flex-wrap cart-container">
-            <div class="d-flex align-items-center counter-container">
-              <app-button class="count-btn">+</app-button>
-              <span>1</span>
-              <app-button class="count-btn">-</app-button>
-            </div>
-
-            <app-button>Add to Cart</app-button>
-          </div>
+          <app-cart-counter [item]="item"></app-cart-counter>
+          <span *ngIf="cartProducts[item.id]" class="mt-1 error"
+            >x{{ cartProducts[item.id].quantity }} in cart</span
+          >
         </div>
       </div>
     </div>

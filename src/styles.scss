@@ -48,6 +48,10 @@ img {
   }
 }
 
+.error {
+  color: $error-red;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 5px;
