@@ -1,0 +1,63 @@
+@import "../../../styles.scss";
+
+.checkout-card {
+  .items-container {
+    border-bottom: 1px solid #ddd;
+
+    .image-container {
+      width: 75px;
+      height: 75px;
+      border-radius: 7px;
+      position: relative;
+
+      img {
+        border-radius: inherit;
+        width: inherit;
+        height: inherit;
+      }
+
+      .quantity {
+        position: absolute;
+        top: -7px;
+        right: -5px;
+        line-height: 1;
+        padding: 4px 8px;
+        background: $main_color;
+        color: white;
+        font-weight: 500;
+        border-radius: 50%;
+      }
+    }
+
+    .name {
+      color: $main_color;
+      font-weight: 500;
+    }
+
+    .price {
+      font-weight: 600;
+    }
+  }
+
+  .order-title {
+    font-size: 2rem;
+    font-weight: 600;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      width: 65px;
+      border-radius: 7px;
+      height: 4px;
+      transform: translate(80%, 50%);
+      background-color: $main_color;
+    }
+  }
+
+  .total-price {
+    font-weight: 600;
+    font-size: 1.7rem;
+  }
+}

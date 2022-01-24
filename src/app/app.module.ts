@@ -37,6 +37,8 @@ import { SafePipe } from './pipes/safe.pipe';
 import { RestaurantCardComponent } from './components/RestaurantCard/restaurant-card.component';
 import { MenuComponent } from './components/Menu/menu.component';
 import { CartCounterComponent } from './components/CartCounter/cart-counter.component';
+import { CheckoutComponent } from './views/checkout/checkout.component';
+import { NoCartItemsComponent } from './components/NoCartItems/no-cart-items.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import { CartCounterComponent } from './components/CartCounter/cart-counter.comp
     RestaurantCardComponent,
     MenuComponent,
     CartCounterComponent,
+    CheckoutComponent,
+    NoCartItemsComponent,
   ],
   imports: [
     BrowserModule,

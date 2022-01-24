@@ -15,7 +15,7 @@
           <span class="price">{{ item.price | currency }}</span>
           <app-cart-counter [item]="item"></app-cart-counter>
           <span *ngIf="cartProducts[item.id]" class="mt-1 error"
-            >x{{ cartProducts[item.id].quantity }} in cart</span
+            >{{ cartProducts[item.id].quantity }}x in cart</span
           >
         </div>
       </div>

@@ -3,6 +3,7 @@ import { CartState } from 'src/app/models/Restaurants';
 import {
   addToCart,
   decreaseItemQuantity,
+  emptyCart,
   increaseItemQuantity,
   removeFromCart,
 } from '../../actions/cart.actions';
@@ -47,5 +48,9 @@ export const cartReducer = createReducer(
         quantity: state.products[itemID].quantity - 1,
       },
     },
+  })),
+  on(emptyCart, (state) => ({
+    ...state,
+    products: {},
   }))
 );

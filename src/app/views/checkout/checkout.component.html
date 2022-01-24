@@ -1,0 +1,66 @@
+<div class="row justify-content-center mt-3">
+  <mat-card class="checkout-card col-md-6 col-10">
+    <mat-card-content>
+      <div
+        *ngIf="cartItemsCount === 0"
+        class="d-flex flex-column align-items-center"
+      >
+        <app-no-cart-items></app-no-cart-items>
+        <app-button routerLink="/">Back to restaurants</app-button>
+      </div>
+
+      <div
+        *ngIf="cartItemsCount > 0"
+        class="d-flex flex-column gap-4 container-fluid"
+      >
+        <h3 class="text-center mt-2 order-title">Your Order</h3>
+        <div class="items-container d-flex flex-column gap-4 pb-3">
+          <div
+            *ngFor="let item of cartProducts | keyvalue"
+            class="row flex-nowrap justify-content-between align-items-center"
+          >
+            <div class="image-container col-3 px-0">
+              <img [src]="item.value.image" />
+
+              <span class="quantity">{{ item.value.quantity }}</span>
+            </div>
+
+            <div
+              class="col-9 flex-grow-1 d-flex flex-column flex-sm-row justify-content-sm-between gap-1 align-items-sm-center"
+            >
+              <span class="name">{{ item.value.name }}</span>
+              <span class="price">{{ item.value.price | currency }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="items-container d-flex flex-column gap-4 pb-3">
+          <div class="d-flex justify-content-between">
+            <span class="text-secondary">Subtotal</span>
+            <span class="price">{{
+              subtotal | number: "1.0-2" | currency
+            }}</span>
+          </div>
+
+          <div class="d-flex justify-content-between">
+            <span class="text-secondary">Shipping</span>
+            <span class="price">{{
+              shippingPrice | number: "1.0-2" | currency
+            }}</span>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between">
+          <span>Total</span>
+          <span class="total-price">{{
+            totalPrice | number: "1.0-2" | currency
+          }}</span>
+        </div>
+
+        <div class="d-flex justify-content-center">
+          <app-button (click)="placeOrder()">Place Order</app-button>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

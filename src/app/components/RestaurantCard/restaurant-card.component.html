@@ -30,10 +30,15 @@
 
       <p class="detail-record" *ngIf="restaurant.address">
         <mat-icon>location_on</mat-icon>
-        <span
-          >{{ restaurant.address.street }}, {{ restaurant.address.city }},
-          {{ restaurant.address.country }}</span
-        >
+        <span class="d-flex flex-column gap-1">
+          <span
+            >{{ restaurant.address.street }}, {{ restaurant.address.city }},
+            {{ restaurant.address.country }}</span
+          >
+          <a class="show-more" *ngIf="hideMap" (click)="toggleMap()"
+            >Show on Map</a
+          >
+        </span>
       </p>
     </div>
 
@@ -46,7 +51,7 @@
       </p>
 
       <iframe
-        *ngIf="mapSrc"
+        *ngIf="mapSrc && !hideMap"
         width="100%"
         height="200"
         frameborder="0"

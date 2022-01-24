@@ -20,3 +20,5 @@ export const decreaseItemQuantity = createAction(
   '[Cart] Decrease item quantity',
   props<{ itemID: number }>()
 );
+
+export const emptyCart = createAction('[Cart] Empty cart');

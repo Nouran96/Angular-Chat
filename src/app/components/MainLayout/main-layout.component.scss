@@ -41,9 +41,9 @@
         color: white;
         background: $error-red;
         top: -9px;
-        right: -5px;
+        right: -7px;
         line-height: 1;
-        padding: 0.2rem 0.3rem;
+        padding: 4px 7px;
         border-radius: 50%;
       }
     }
@@ -75,24 +75,6 @@
   max-height: 370px !important;
   overflow: auto;
   padding: 1rem;
-
-  .no-items {
-    display: flex;
-    flex-direction: column;
-
-    .icon-container {
-      color: $main-color;
-      width: 100%;
-      height: 150px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      .mat-icon {
-        transform: scale(6.5) translate(0px, 0px);
-      }
-    }
-  }
 
   .image-container {
     width: 50px;

@@ -32,12 +32,7 @@
     </mat-menu>
 
     <mat-menu class="cart-items-menu" #cartItems="matMenu">
-      <div class="no-items" *ngIf="cartItemsCount === 0">
-        <div class="icon-container">
-          <mat-icon class="material-icons-outlined">shopping_bag</mat-icon>
-        </div>
-        <p class="text-center mt-2 lead">Your cart is empty</p>
-      </div>
+      <app-no-cart-items *ngIf="cartItemsCount === 0"></app-no-cart-items>
 
       <div
         *ngIf="cartItemsCount > 0"
@@ -87,6 +82,10 @@
             totalPrice | number: "1.0-2" | currency
           }}</span>
         </div>
+
+        <app-button routerLink="/checkout" class="w-100" router
+          >Proceed to Checkout</app-button
+        >
       </div>
     </mat-menu>
   </mat-toolbar>
