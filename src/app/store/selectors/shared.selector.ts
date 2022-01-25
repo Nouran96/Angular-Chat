@@ -6,4 +6,5 @@ export const selectShared = createFeatureSelector<SharedState>('shared');
 export const selectSnackbar = createSelector(selectShared, (shared) => ({
   openSnackbar: shared.openSnackbar,
   message: shared.message,
+  className: shared.className,
 }));

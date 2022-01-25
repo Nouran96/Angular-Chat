@@ -1,0 +1,30 @@
+.chat-floating-btn {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 10px;
+  overflow: hidden;
+
+  &:hover {
+    .hint-text {
+      left: 15px;
+      background: rgb(0 0 0 / 37%);
+    }
+  }
+
+  button {
+    position: relative;
+    left: 10px;
+  }
+
+  .hint-text {
+    background: white;
+    color: white;
+    padding: 0.3rem 0.4rem;
+    border-radius: 7px 0 0 7px;
+    font-weight: 500;
+    position: relative;
+    left: 150px;
+    transition: left 0.4s, background 0.8s ease-out;
+  }
+}

@@ -2,5 +2,5 @@ import { createAction, props } from '@ngrx/store';
 
 export const toggleSnackbar = createAction(
   '[Snackbar] Toggle Snackbar',
-  props<{ open: boolean; message: string }>()
+  props<{ open: boolean; message: string; className?: string }>()
 );

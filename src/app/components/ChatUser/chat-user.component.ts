@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { User } from 'src/app/models/Auth';
 
 @Component({
   selector: 'app-chat-user',
@@ -6,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./chat-user.component.scss'],
 })
 export class ChatUserComponent implements OnInit {
-  @Input() user: firebase.default.User;
+  @Input() user: User;
 
   constructor() {}
 

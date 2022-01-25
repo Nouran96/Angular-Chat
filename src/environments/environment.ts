@@ -13,8 +13,8 @@ export const environment = {
     storageBucket: 'angular-chat-85ae9.appspot.com',
     messagingSenderId: '1049868644645',
   },
-  restaurantsApiBaseUrl: 'https://api.documenu.com/v2',
-  restaurantsApiKey: 'a4655d3a8077b20a5ca290e806c4559d',
+  // https://docs.eet.nu/venues
+  restaurantsApiBaseUrl: 'https://api.eet.nu',
 };
 
 /*

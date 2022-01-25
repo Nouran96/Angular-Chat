@@ -1,5 +1,6 @@
 import { QueryFn } from '@angular/fire/compat/database';
 import { BehaviorSubject, of } from 'rxjs';
+import { User } from '../models/Auth';
 
 export const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 export const breakpointObserverSpy = {
@@ -26,11 +27,11 @@ export const FireAuthStub = {
   createUserWithEmailAndPassword: (email: string, password: string) => {
     return new Promise((resolve, reject) => resolve(''));
   },
-  onAuthStateChanged: (callback: (user: firebase.default.User) => any) => {
+  onAuthStateChanged: (callback: (user: User) => any) => {
     return callback({
       email: 'nouran@yahoo.com',
       displayName: 'nouran',
-    } as firebase.default.User);
+    } as User);
   },
 };
 

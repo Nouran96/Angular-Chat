@@ -4,7 +4,9 @@ import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { User } from 'src/app/models/Auth';
 import { CartProducts, MenuItem } from 'src/app/models/Restaurants';
+import { addCurrentUser } from 'src/app/store/actions/auth.actions';
 import {
   decreaseItemQuantity,
   increaseItemQuantity,
@@ -19,7 +21,7 @@ import { selectCartProducts } from 'src/app/store/selectors/cart.selector';
   encapsulation: ViewEncapsulation.None,
 })
 export class MainLayoutComponent implements OnInit {
-  @Input() currentUser: firebase.default.User | null;
+  @Input() currentUser: User | null;
   cartProducts: CartProducts;
   totalPrice: number;
 
@@ -42,6 +44,7 @@ export class MainLayoutComponent implements OnInit {
 
   logout() {
     this.auth.signOut().then(() => {
+      // this.store.dispatch(addCurrentUser({ user: null }));
       this.router.navigate(['login']);
     });
   }

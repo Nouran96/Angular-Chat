@@ -1,3 +1,5 @@
 export interface AuthState {
-  currentUser: firebase.default.User | null;
+  currentUser: User | null;
 }
+
+export type User = firebase.default.User & { isAdmin?: boolean };

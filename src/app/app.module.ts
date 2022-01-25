@@ -39,6 +39,7 @@ import { MenuComponent } from './components/Menu/menu.component';
 import { CartCounterComponent } from './components/CartCounter/cart-counter.component';
 import { CheckoutComponent } from './views/checkout/checkout.component';
 import { NoCartItemsComponent } from './components/NoCartItems/no-cart-items.component';
+import { ChatBubbleComponent } from './components/ChatBubble/chat-bubble.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { NoCartItemsComponent } from './components/NoCartItems/no-cart-items.com
     CartCounterComponent,
     CheckoutComponent,
     NoCartItemsComponent,
+    ChatBubbleComponent,
   ],
   imports: [
     BrowserModule,

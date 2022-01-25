@@ -1,0 +1,47 @@
+<div class="chat-floating-btn" [matMenuTriggerFor]="chat">
+  <span class="hint-text">Customer service</span>
+  <button mat-mini-fab color="primary">
+    <mat-icon>chat</mat-icon>
+  </button>
+</div>
+
+<mat-menu class="chat-menu" #chat="matMenu">
+  <div class="chat-room-container">
+    <div class="selected-user-container">
+      <div class="user-avatar">
+        <img src="../../../../assets/avatar.png" alt="Avatar" />
+      </div>
+
+      <span>Customer Service</span>
+    </div>
+
+    <div class="messages-container" #messagesContainer>
+      <div
+        *ngFor="let message of messages"
+        [class]="{ 'my-message': message.sender === currentUser.displayName }"
+      >
+        <app-chat-message
+          [message]="message"
+          [currentUser]="currentUser"
+        ></app-chat-message>
+      </div>
+    </div>
+
+    <form class="chat-input-container">
+      <textarea
+        (keydown)="checkKeyBeforeSend($event)"
+        matInput
+        rows="2"
+        placeholder="Write your message..."
+        [(ngModel)]="currentMessage"
+        name="message"
+      ></textarea>
+
+      <div class="send-container" title="Send">
+        <button mat-icon-button (click)="sendMessage()">
+          <mat-icon class="material-icons-outlined">send</mat-icon>
+        </button>
+      </div>
+    </form>
+  </div>
+</mat-menu>

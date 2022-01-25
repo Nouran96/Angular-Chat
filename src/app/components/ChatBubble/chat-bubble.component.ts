@@ -1,49 +1,30 @@
-import { BreakpointObserver } from '@angular/cdk/layout';
-import {
-  Component,
-  ElementRef,
-  ViewChild,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Store } from '@ngrx/store';
 import { User } from 'src/app/models/Auth';
 import { selectCurrentUser } from 'src/app/store/selectors/auth.selector';
 
 @Component({
-  selector: 'app-chat',
-  templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  selector: 'app-chat-bubble',
+  templateUrl: './chat-bubble.component.html',
+  styleUrls: ['./chat-bubble.component.scss'],
 })
-export class ChatComponent {
+export class ChatBubbleComponent implements OnInit {
   currentUser: User;
   otherUser: User;
-  users: any;
   currentMessage: string;
   chatroomId: string;
   messages: any = [];
-  isSmallScreen: boolean;
 
   @ViewChild('messagesContainer') messagesContainer: ElementRef;
 
-  constructor(
-    private firestore: AngularFirestore,
-    public store: Store,
-    private breakpointObserver: BreakpointObserver
-  ) {
-    store.select(selectCurrentUser).subscribe((data) => {
+  constructor(private firestore: AngularFirestore, public store: Store) {}
+
+  ngOnInit(): void {
+    this.store.select(selectCurrentUser).subscribe((data) => {
       if (data.currentUser) {
         this.currentUser = data.currentUser;
       }
-
-      this.users = firestore.collection('users').valueChanges();
-    });
-
-    const layoutChanges = breakpointObserver.observe(['(max-width: 680px)']);
-
-    layoutChanges.subscribe((result) => {
-      this.isSmallScreen = result.matches;
     });
   }
 

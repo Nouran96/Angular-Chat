@@ -9,4 +9,5 @@ export const environment = {
     storageBucket: 'angular-chat-85ae9.appspot.com',
     messagingSenderId: '1049868644645',
   },
+  restaurantsApiBaseUrl: 'https://api.eet.nu',
 };

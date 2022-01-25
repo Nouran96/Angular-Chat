@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Store } from '@ngrx/store';
+import { User } from 'src/app/models/Auth';
 import { ChatMessage } from 'src/app/models/ChatMessage';
 import { storeSpy } from 'src/app/utils/Stubs';
 
@@ -16,7 +17,7 @@ describe('ChatMessageComponent', () => {
     component.currentUser = {
       email: 'nouran@yahoo.com',
       displayName: 'nouran',
-    } as firebase.default.User;
+    } as User;
 
     component.message = {
       sender: 'nouran',

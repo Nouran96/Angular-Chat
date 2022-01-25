@@ -18,11 +18,11 @@ export class RestaurantsService {
 
   getRestaurants(page: number = 1) {
     return this.http.get<RestaurantsResponse>(
-      `https://api.eet.nu/venues?host=api.eet.nu&tags=online-menu&per_page=25&page=${page}`
+      `${environment.restaurantsApiBaseUrl}/venues?host=api.eet.nu&tags=online-menu&per_page=25&page=${page}`
     );
   }
 
   getRestaurant(id: string) {
-    return this.http.get(`https://api.eet.nu/venues/${id}`);
+    return this.http.get(`${environment.restaurantsApiBaseUrl}/venues/${id}`);
   }
 }

@@ -36,6 +36,7 @@ export class CheckoutComponent implements OnInit {
       toggleSnackbar({
         open: true,
         message: 'Order placed successfully',
+        className: 'success-snackbar',
       })
     );
 

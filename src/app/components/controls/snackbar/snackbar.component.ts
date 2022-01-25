@@ -22,9 +22,13 @@ export class SnackbarComponent implements OnInit {
   }
 
   openSnackBar(snackbar: Snackbar) {
+    console.log(snackbar);
     this._snackBar.open(snackbar.message, 'Close', {
       duration: 4000,
-      panelClass: 'snackbar-container',
+      panelClass: [
+        'snackbar-container',
+        ...(snackbar.className ? [snackbar.className] : []),
+      ],
     });
   }
 }
