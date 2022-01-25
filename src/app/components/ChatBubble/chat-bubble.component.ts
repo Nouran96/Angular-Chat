@@ -1,4 +1,12 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  SimpleChanges,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Store } from '@ngrx/store';
 import { User } from 'src/app/models/Auth';
@@ -8,9 +16,10 @@ import { selectCurrentUser } from 'src/app/store/selectors/auth.selector';
   selector: 'app-chat-bubble',
   templateUrl: './chat-bubble.component.html',
   styleUrls: ['./chat-bubble.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ChatBubbleComponent implements OnInit {
-  @Input() isAdmin: boolean | undefined | null;
+  isAdmin: boolean | undefined | null;
   currentUser: User;
   otherUser: User;
   currentMessage: string;
@@ -25,18 +34,29 @@ export class ChatBubbleComponent implements OnInit {
     this.store.select(selectCurrentUser).subscribe((data) => {
       if (data.currentUser) {
         this.currentUser = data.currentUser;
+        this.isAdmin = this.currentUser.isAdmin;
+
+        if (!this.isAdmin) this.otherUser = { displayName: 'Admin' } as User;
+
+        if (!this.chatroomId) {
+          this.openChatRoom();
+        }
       }
     });
   }
+
+  // ngOnChanges(changes: SimpleChanges) {
+  //   if (changes.isAdmin && !changes.isAdmin.currentValue) {
+  //     this.otherUser = { displayName: 'Admin' } as User;
+  //   }
+  // }
 
   ngAfterViewChecked() {
     this.scrollToLastMessage();
   }
 
-  openChatRoom(user: User) {
-    if (this.currentUser?.displayName && user?.displayName) {
-      this.otherUser = user;
-
+  openChatRoom() {
+    if (this.currentUser?.displayName) {
       const chatroomQuery = this.firestore.collection('chatrooms', (ref) =>
         ref
           .where(`members.${this.currentUser.displayName}`, '==', true)
@@ -108,5 +128,9 @@ export class ChatBubbleComponent implements OnInit {
 
     this.currentMessage = '';
     // this.scrollToLastMessage();
+  }
+
+  stopPropagation(event: Event) {
+    event.stopPropagation();
   }
 }
