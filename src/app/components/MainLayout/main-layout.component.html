@@ -92,13 +92,5 @@
 
   <ng-content></ng-content>
 
-  <app-chat-bubble *ngIf="!currentUser?.isAdmin"></app-chat-bubble>
-  <button
-    *ngIf="currentUser?.isAdmin"
-    routerLink="/chat"
-    mat-mini-fab
-    color="primary"
-  >
-    <mat-icon>chat</mat-icon>
-  </button>
+  <app-chat-bubble [isAdmin]="isAdmin"></app-chat-bubble>
 </div>

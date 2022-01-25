@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Store } from '@ngrx/store';
 import { User } from 'src/app/models/Auth';
@@ -10,6 +10,7 @@ import { selectCurrentUser } from 'src/app/store/selectors/auth.selector';
   styleUrls: ['./chat-bubble.component.scss'],
 })
 export class ChatBubbleComponent implements OnInit {
+  @Input() isAdmin: boolean | undefined | null;
   currentUser: User;
   otherUser: User;
   currentMessage: string;

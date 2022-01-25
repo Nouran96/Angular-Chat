@@ -1,4 +1,8 @@
-<div class="chat-floating-btn" [matMenuTriggerFor]="chat">
+<div
+  *ngIf="!isAdmin; else notAdmin"
+  class="chat-floating-btn"
+  [matMenuTriggerFor]="chat"
+>
   <span class="hint-text">Customer service</span>
   <button mat-mini-fab color="primary">
     <mat-icon>chat</mat-icon>
@@ -45,3 +49,11 @@
     </form>
   </div>
 </mat-menu>
+
+<ng-template #notAdmin>
+  <div class="chat-floating-btn" routerLink="/chat">
+    <button mat-mini-fab color="primary">
+      <mat-icon>chat</mat-icon>
+    </button>
+  </div>
+</ng-template>

@@ -85,6 +85,7 @@ export class AuthFormComponent {
               this.firestore.collection('users').doc(user?.uid).set({
                 email: email.value,
                 displayName: username.value,
+                isAdmin: false,
               });
 
               this.store.dispatch(addCurrentUser({ user }));
