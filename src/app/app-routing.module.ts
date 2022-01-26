@@ -12,7 +12,7 @@ import { RestaurantComponent } from './views/restaurant/restaurant.component';
 import { CheckoutComponent } from './views/checkout/checkout.component';
 import { OnlyAdminGuard } from './guards/onlyAdmin/only-admin.guard';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     component: HomeComponent,

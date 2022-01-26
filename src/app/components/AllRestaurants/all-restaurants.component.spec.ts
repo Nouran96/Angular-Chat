@@ -26,6 +26,13 @@ describe('AllRestaurantsComponent', () => {
   });
 
   it('should create', () => {
+    restaurantsServiceStub.getRestaurants = jasmine.createSpy().and.returnValue(
+      of({
+        results: [],
+        pagination: {} as Pagination,
+      })
+    );
+
     initiateComponent();
     expect(component).toBeTruthy();
   });

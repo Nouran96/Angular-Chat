@@ -30,6 +30,9 @@ export const ActivatedRouteStub = { url: of([{ path: 'login' }]) };
 
 export const restaurantsServiceStub = {
   getRestaurants: jasmine.createSpy(),
+  getRestaurant: jasmine
+    .createSpy()
+    .and.returnValue(of({ id: 1, name: 'Restaurant' })),
 };
 
 export const FireAuthStub = {

@@ -51,23 +51,23 @@ describe('ChatComponent', () => {
     expect(userMenu).toBeFalsy();
   });
 
-  it('should show users menu on clicking menu icon', () => {
-    initiateComponent();
-    component.isSmallScreen = true;
+  // it('should show users menu on clicking menu icon', () => {
+  //   initiateComponent();
+  //   component.isSmallScreen = true;
 
-    fixture.detectChanges();
+  //   fixture.detectChanges();
 
-    let menuIcon: HTMLButtonElement =
-      fixture.debugElement.nativeElement.querySelector('.menu-icon');
+  //   let menuIcon: HTMLButtonElement =
+  //     fixture.debugElement.nativeElement.querySelector('.menu-icon');
 
-    menuIcon.dispatchEvent(new Event('click'));
+  //   menuIcon.dispatchEvent(new Event('click'));
 
-    // menuIcon = fixture.debugElement.nativeElement.querySelector('.menu-icon');
+  //   // menuIcon = fixture.debugElement.nativeElement.querySelector('.menu-icon');
 
-    // console.log(menuIcon.attributes);
+  //   // console.log(menuIcon.attributes);
 
-    // expect(
-    //   menuIcon.attributes.getNamedItem('aria-expanded')?.value
-    // ).toBeTruthy();
-  });
+  //   // expect(
+  //   //   menuIcon.attributes.getNamedItem('aria-expanded')?.value
+  //   // ).toBeTruthy();
+  // });
 });

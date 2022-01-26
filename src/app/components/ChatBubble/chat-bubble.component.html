@@ -1,5 +1,5 @@
 <div
-  *ngIf="!isAdmin; else notAdmin"
+  *ngIf="!isAdmin; else admin"
   class="chat-floating-btn"
   [matMenuTriggerFor]="chat"
 >
@@ -53,9 +53,9 @@
   </div>
 </mat-menu>
 
-<ng-template #notAdmin>
+<ng-template #admin>
   <div class="chat-floating-btn" routerLink="/chat">
-    <button mat-mini-fab color="primary">
+    <button class="admin-chat" mat-mini-fab color="primary">
       <mat-icon>chat</mat-icon>
     </button>
   </div>
