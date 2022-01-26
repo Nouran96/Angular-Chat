@@ -64,7 +64,7 @@ describe('ChatComponent', () => {
 
     // menuIcon = fixture.debugElement.nativeElement.querySelector('.menu-icon');
 
-    console.log(menuIcon.attributes);
+    // console.log(menuIcon.attributes);
 
     // expect(
     //   menuIcon.attributes.getNamedItem('aria-expanded')?.value

@@ -16,7 +16,7 @@ import { selectCurrentUser } from 'src/app/store/selectors/auth.selector';
   providedIn: 'root',
 })
 export class OnlyAdminGuard implements CanActivate {
-  constructor(private store: Store, private router: Router) {}
+  constructor(public store: Store, private router: Router) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -31,7 +31,8 @@ export class OnlyAdminGuard implements CanActivate {
 
   async isAdmin() {
     let state = await this.store
-      .pipe(select(selectCurrentUser), take(1))
+      .select(selectCurrentUser)
+      .pipe(take(1))
       .toPromise<AuthState>();
 
     if (state.currentUser?.isAdmin) {

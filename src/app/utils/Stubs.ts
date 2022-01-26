@@ -14,7 +14,11 @@ export const storeSpy = {
   dispatch: jasmine.createSpy(),
   select: (selector: any) => {
     return of({
-      currentUser: { email: 'nouran@yahoo.com', displayName: 'nouran' },
+      currentUser: {
+        email: 'nouran@yahoo.com',
+        displayName: 'nouran',
+        isAdmin: false,
+      },
       products: {},
     });
   },
