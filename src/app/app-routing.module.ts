@@ -10,6 +10,7 @@ import { RegisterComponent } from './views/register/register.component';
 import { ChatComponent } from './components/Chat/chat.component';
 import { RestaurantComponent } from './views/restaurant/restaurant.component';
 import { CheckoutComponent } from './views/checkout/checkout.component';
+import { OnlyAdminGuard } from './guards/onlyAdmin/only-admin.guard';
 
 const routes: Routes = [
   {
@@ -20,7 +21,7 @@ const routes: Routes = [
   {
     path: 'chat',
     component: ChatComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, OnlyAdminGuard],
   },
   {
     path: 'login',

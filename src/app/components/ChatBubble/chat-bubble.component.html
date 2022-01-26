@@ -10,7 +10,10 @@
 </div>
 
 <mat-menu class="chat-menu" #chat="matMenu">
-  <div class="chat-room-container" (click)="stopPropagation($event)">
+  <div
+    class="chat-room-container chat-bubble"
+    (click)="stopPropagation($event)"
+  >
     <div class="selected-user-container">
       <div class="user-avatar">
         <img src="../../../../assets/avatar.png" alt="Avatar" />

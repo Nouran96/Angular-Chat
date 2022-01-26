@@ -1,7 +1,7 @@
 .chat-floating-btn {
   position: fixed;
   bottom: 0;
-  right: 0;
+  right: 10px;
   padding: 10px;
   overflow: hidden;
 
@@ -33,7 +33,7 @@
   padding: 0 !important;
 }
 
-.chat-room-container {
+.chat-room-container.chat-bubble {
   flex: 1;
   height: 300px;
   // width: 60%;
