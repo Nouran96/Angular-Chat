@@ -15,6 +15,7 @@ export const storeSpy = {
   select: (selector: any) => {
     return of({
       currentUser: { email: 'nouran@yahoo.com', displayName: 'nouran' },
+      products: {},
     });
   },
 };

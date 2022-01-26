@@ -13,7 +13,7 @@ export class CartCounterComponent implements OnInit {
   @Input() item: MenuItem;
   cartQuantity: number = 1;
 
-  constructor(private store: Store) {}
+  constructor(public store: Store) {}
 
   ngOnInit(): void {}
 

@@ -29,14 +29,6 @@ export class MainLayoutComponent implements OnInit {
     return Object.keys(this.cartProducts).length;
   }
 
-  // get isAdmin() {
-  //   return (
-  //     this.currentUser &&
-  //     'isAdmin' in this.currentUser &&
-  //     this.currentUser.isAdmin
-  //   );
-  // }
-
   constructor(
     private auth: AngularFireAuth,
     private router: Router,

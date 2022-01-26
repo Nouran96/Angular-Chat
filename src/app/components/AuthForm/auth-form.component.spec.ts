@@ -20,8 +20,8 @@ import {
   routerSpy,
   storeSpy,
 } from 'src/app/utils/Stubs';
-import { ButtonComponent } from '../../controls/button/button.component';
-import { InputFieldComponent } from '../../controls/input-field/input-field.component';
+import { ButtonComponent } from '../controls/button/button.component';
+import { InputFieldComponent } from '../controls/input-field/input-field.component';
 
 import { AuthFormComponent } from './auth-form.component';
 
