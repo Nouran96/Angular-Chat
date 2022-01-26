@@ -6,6 +6,26 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
+## Env Variables
+
+Create a folder `src/environments` with two files `environment.ts` and `environment.prod.ts` and add the following code to them
+
+```
+export const environment = {
+  production: <true or false depending on file>,
+  firebase: {
+    apiKey: <API_KEY>,
+    authDomain: <AUTH_DOMAIN>,
+    databaseURL: <DATABASE_URL>,
+    projectId: <PROJECT_ID>,
+    storageBucket: <STORAGE_BUCKET>,
+    messagingSenderId: <MESSAGE_SENDER_ID>,
+  },
+  // https://docs.eet.nu/venues
+  restaurantsApiBaseUrl: 'https://api.eet.nu',
+};
+```
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
