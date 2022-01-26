@@ -35,6 +35,8 @@
     >
     </mat-paginator>
 
+    <p *ngIf="errorFetching" class="text-center lead">No restaurants found</p>
+
     <div class="spinner">
       <app-spinner *ngIf="isLoading" color="teal" [diameter]="50"></app-spinner>
     </div>

@@ -19,41 +19,23 @@ export class AllRestaurantsComponent implements OnInit {
   restaurants: any[] = [];
   pagination: Pagination | null;
   isLoading: boolean = true;
+  errorFetching: boolean = false;
 
   @ViewChild('restaurantsContainer') restaurantsContainer: ElementRef;
 
-  constructor(private restaurantsService: RestaurantsService) {}
+  constructor(public restaurantsService: RestaurantsService) {}
 
   ngOnInit(): void {
     this.restaurantsService.getRestaurants().subscribe((res) => {
       this.isLoading = false;
-      this.restaurants = res.results;
-      this.pagination = res.pagination;
+
+      if (res.results && res.results.length > 0) {
+        this.restaurants = res.results;
+        this.pagination = res.pagination;
+      } else {
+        this.errorFetching = true;
+      }
     });
-
-    // const data = 'language=en_US&limit=30&location_id=297704&currency=USD';
-
-    // const xhr = new XMLHttpRequest();
-    // xhr.withCredentials = true;
-
-    // xhr.addEventListener('readystatechange', function () {
-    //   if (this.readyState === this.DONE) {
-    //     console.log(this.responseText);
-    //   }
-    // });
-
-    // xhr.open('POST', 'https://worldwide-restaurants.p.rapidapi.com/search');
-    // xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded');
-    // xhr.setRequestHeader(
-    //   'x-rapidapi-key',
-    //   '699bbf2cdcmsh8976b1d7ef42b21p1acfafjsnec4d9300fdb4'
-    // );
-    // xhr.setRequestHeader(
-    //   'x-rapidapi-host',
-    //   'worldwide-restaurants.p.rapidapi.com'
-    // );
-
-    // xhr.send(data);
   }
 
   onPageChange(e: PageEvent) {

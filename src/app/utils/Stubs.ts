@@ -23,7 +23,14 @@ export const storeSpy = {
     });
   },
 };
+
+export const httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
+
 export const ActivatedRouteStub = { url: of([{ path: 'login' }]) };
+
+export const restaurantsServiceStub = {
+  getRestaurants: jasmine.createSpy(),
+};
 
 export const FireAuthStub = {
   signInWithEmailAndPassword: (email: string, password: string) => {
